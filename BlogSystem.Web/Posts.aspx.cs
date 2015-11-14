@@ -22,7 +22,7 @@
             this.presenter.Initialize();
         }
 
-        public List<PostView> PostItems
+        public List<PostViewModel> PostItems
         {
             set
             {

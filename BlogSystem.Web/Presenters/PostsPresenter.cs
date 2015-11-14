@@ -25,16 +25,17 @@
         public void Initialize()
         {
             var postsPreviews= this.Data.Posts.All()
+                .OrderByDescending(p => p.DateCreated)
                 .Select(
                         p =>
-                        new PostView
+                        new PostViewModel
                         {
                             Id = p.Id,
                             PostTitle = p.Title,
-                            Author = new AuthorView { Id = p.AuthorId, UserName = p.Author.UserName },
-                            Category = new CategoryView { Id = p.CategoryId, Name = p.Category.Name },
+                            Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
+                            Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
                             Content = p.Content.Substring(0,200) + "...",
-                            Tags = p.Tags.Select(t => new TagView { Id = t.Id, Name = t.Name }).ToList()
+                            Tags = p.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name }).ToList()
                         })
                     .ToList();
 

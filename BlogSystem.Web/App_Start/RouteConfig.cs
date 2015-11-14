@@ -10,6 +10,8 @@ namespace BlogSystem.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapPageRoute("CustomErrorPage", "CustomErrorPage", "~/CustomErrorPage.aspx");
+
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Permanent;
             routes.EnableFriendlyUrls(settings);

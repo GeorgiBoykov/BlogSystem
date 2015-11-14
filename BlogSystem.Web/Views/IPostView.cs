@@ -13,14 +13,14 @@
 
         string Content { set; }
 
-        CategoryView Category { set; }
+        CategoryViewModel Category { set; }
 
-        AuthorView Author { set; }
+        AuthorViewModel Author { set; }
 
         DateTime DateCreated { set; }
 
-        List<CommentView> Comments { set; }
+        List<CommentViewModel> Comments { get; set; }
 
-        List<TagView> Tags { set; }
+        List<TagViewModel> Tags { set; }
     }
 }

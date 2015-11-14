@@ -29,22 +29,26 @@
 
         <div id="add-comment">
             <asp:Label runat="server" AssociatedControlID="addComment">Add comment: </asp:Label>
-            
             <asp:TextBox runat="server" ID="commentAuthor" placeholder="Your name" CssClass="form-control"></asp:TextBox>
             <asp:TextBox runat="server" ID="addComment" placeholder="Comment..." CssClass="form-control" TextMode="MultiLine">
             </asp:TextBox>
             <asp:Button runat="server" CssClass="btn-default" ID="addCommentBtn" OnClick="addCommentBtn_OnClick" Text="Submit"/>
         </div>
-
+        
         <div class="comments">
             <asp:Repeater runat="server" ID="comments">
                 <ItemTemplate>
                     <div class="well">
                         <p> <%# this.Eval("Content") %></p>
+                        <em class="mini"> — By: 
+                            <span><%# this.Eval("Author") %></span>
+                             on 
+                            <span><%# this.Eval("DateCreated", "{0:d}") %></span>
+                        </em>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
-
     </div>
+
 </asp:Content>

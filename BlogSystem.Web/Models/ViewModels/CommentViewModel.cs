@@ -4,7 +4,7 @@
 
     using BlogSystem.Web.Views;
 
-    public class CommentView : ICommentView
+    public class CommentViewModel : ICommentView
     {
         public int Id { get; set; }
 

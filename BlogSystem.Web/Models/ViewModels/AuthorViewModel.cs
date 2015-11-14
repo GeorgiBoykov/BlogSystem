@@ -2,7 +2,7 @@
 {
     using BlogSystem.Web.Views;
 
-    public class AuthorView : IAuthorView
+    public class AuthorViewModel : IAuthorView
     {
         public string Id { get; set; }
 

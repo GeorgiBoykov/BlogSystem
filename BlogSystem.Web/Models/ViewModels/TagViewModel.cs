@@ -2,7 +2,7 @@
 {
     using BlogSystem.Web.Views;
 
-    public class TagView : ITagView
+    public class TagViewModel : ITagView
     {
         public int Id { get; set; }
 

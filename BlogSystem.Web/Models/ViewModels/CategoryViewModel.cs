@@ -2,7 +2,7 @@
 {
     using BlogSystem.Web.Views;
 
-    public class CategoryView : ICategoryView
+    public class CategoryViewModel : ICategoryView
     {
         public int Id { get; set; }
 

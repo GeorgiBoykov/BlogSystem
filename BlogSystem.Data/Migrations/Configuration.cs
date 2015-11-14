@@ -58,6 +58,7 @@ namespace BlogSystem.Data.Migrations
 
         private void SeedComments(BlogSystemDbContext context)
         {
+
             var comment1 = new Comment
                                {
                                    Author = "Gosho",

@@ -4,6 +4,7 @@ namespace BlogSystem.Web
     using System.Collections.Generic;
     using System.Net;
     using System.Web;
+    using System.Web.Services;
 
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
@@ -24,9 +25,9 @@ namespace BlogSystem.Web
             {
                 this.presenter.Initialize(int.Parse(this.Request.QueryString["id"]));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Response.Redirect("Posts.aspx");   
+                this.Response.RedirectToRoute("CustomErrorPage", new {ErrorMessage = ex.Message});
             }
         }
 
@@ -48,7 +49,7 @@ namespace BlogSystem.Web
             }
         }
 
-        public CategoryView Category
+        public CategoryViewModel Category
         {
             set
             {
@@ -56,7 +57,7 @@ namespace BlogSystem.Web
             }
         }
 
-        public AuthorView Author
+        public AuthorViewModel Author
         {
             set
             {
@@ -72,8 +73,12 @@ namespace BlogSystem.Web
             }
         }
 
-        public List<CommentView> Comments
+        public List<CommentViewModel> Comments
         {
+            get
+            {
+                return this.comments.DataSource as List<CommentViewModel>;
+            }
             set
             {
                 this.comments.DataSource = value;
@@ -81,7 +86,7 @@ namespace BlogSystem.Web
             }
         }
 
-        public List<TagView> Tags
+        public List<TagViewModel> Tags
         {
             set
             {
@@ -89,10 +94,11 @@ namespace BlogSystem.Web
                 this.DataBind();
             }
         }
-
+        
         protected void addCommentBtn_OnClick(object sender, EventArgs e)
         {
             this.presenter.AddComment(this.commentAuthor.Text, this.addComment.Text, this.Id);
+            this.DataBind();
         }
     }
 }

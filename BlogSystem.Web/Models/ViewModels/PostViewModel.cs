@@ -5,7 +5,7 @@
 
     using BlogSystem.Web.Views;
 
-    public class PostView : IPostView
+    public class PostViewModel : IPostView
     {
         public int Id { get; set; }
 
@@ -13,13 +13,13 @@
 
         public string Content { get; set; }
 
-        public CategoryView Category { get; set; }
+        public CategoryViewModel Category { get; set; }
 
-        public AuthorView Author { get; set; }
+        public AuthorViewModel Author { get; set; }
 
-        public List<CommentView> Comments { get; set; }
+        public List<CommentViewModel> Comments { get; set; }
 
-        public List<TagView> Tags { get; set; }
+        public List<TagViewModel> Tags { get; set; }
 
         public DateTime DateCreated { get; set; }
     }

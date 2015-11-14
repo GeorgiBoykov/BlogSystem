@@ -6,6 +6,6 @@
 
     public interface IPostsView
     {
-        List<PostView> PostItems { set; }
+        List<PostViewModel> PostItems { set; }
     }
 }
