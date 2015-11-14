@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Web.UI;
 
+    using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
-    using BlogSystem.Web.Views.Interfaces;
 
     public partial class Posts : Page, IPostsView
     {

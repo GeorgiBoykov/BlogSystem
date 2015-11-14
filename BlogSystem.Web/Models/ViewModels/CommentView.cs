@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace BlogSystem.Web.Views
+﻿namespace BlogSystem.Web.Models.ViewModels
 {
-    using BlogSystem.Web.Views.Interfaces;
+    using System;
+
+    using BlogSystem.Web.Views;
 
     public class CommentView : ICommentView
     {

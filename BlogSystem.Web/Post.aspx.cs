@@ -5,9 +5,9 @@ namespace BlogSystem.Web
     using System.Net;
     using System.Web;
 
+    using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
-    using BlogSystem.Web.Views.Interfaces;
 
     public partial class Post : System.Web.UI.Page, IPostView
     {

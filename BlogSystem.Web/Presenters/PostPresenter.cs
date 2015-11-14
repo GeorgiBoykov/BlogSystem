@@ -6,8 +6,8 @@
     using BlogSystem.Data.Interfaces;
     using BlogSystem.Models;
     using BlogSystem.Web.Models;
+    using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Views;
-    using BlogSystem.Web.Views.Interfaces;
 
     public class PostPresenter : BasePresenter
     {

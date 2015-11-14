@@ -1,7 +1,9 @@
-﻿namespace BlogSystem.Web.Views.Interfaces
+﻿namespace BlogSystem.Web.Views
 {
     using System;
     using System.Collections.Generic;
+
+    using BlogSystem.Web.Models.ViewModels;
 
     public interface IPostView
     {

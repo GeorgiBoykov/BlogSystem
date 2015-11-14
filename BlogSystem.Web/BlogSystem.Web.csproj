@@ -362,6 +362,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\AuthorView.cs" />
+    <Compile Include="Models\ViewModels\CategoryView.cs" />
+    <Compile Include="Models\ViewModels\CommentView.cs" />
+    <Compile Include="Models\ViewModels\PostView.cs" />
+    <Compile Include="Models\ViewModels\TagView.cs" />
     <Compile Include="Presenters\BasePresenter.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Post.aspx.cs">
@@ -403,17 +408,12 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Views\AuthorView.cs" />
-    <Compile Include="Views\CategoryView.cs" />
-    <Compile Include="Views\CommentView.cs" />
-    <Compile Include="Views\Interfaces\IAuthorView.cs" />
-    <Compile Include="Views\Interfaces\ICategoryView.cs" />
-    <Compile Include="Views\Interfaces\ICommentView.cs" />
-    <Compile Include="Views\Interfaces\IPostsView.cs" />
-    <Compile Include="Views\Interfaces\IPostView.cs" />
-    <Compile Include="Views\Interfaces\ITagView.cs" />
-    <Compile Include="Views\PostView.cs" />
-    <Compile Include="Views\TagView.cs" />
+    <Compile Include="Views\IAuthorView.cs" />
+    <Compile Include="Views\ICategoryView.cs" />
+    <Compile Include="Views\ICommentView.cs" />
+    <Compile Include="Views\IPostsView.cs" />
+    <Compile Include="Views\IPostView.cs" />
+    <Compile Include="Views\ITagView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

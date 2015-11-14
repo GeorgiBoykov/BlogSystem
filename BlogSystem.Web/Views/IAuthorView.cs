@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web.Views.Interfaces
+﻿namespace BlogSystem.Web.Views
 {
     public interface IAuthorView
     {
