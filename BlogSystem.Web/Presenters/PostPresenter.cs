@@ -5,7 +5,6 @@
 
     using BlogSystem.Data.Interfaces;
     using BlogSystem.Models;
-    using BlogSystem.Web.Models;
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Views;
 
@@ -54,7 +53,7 @@
             this.view.Tags = post.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name }).ToList();
         }
 
-        public void AddComment(string author, string content, int postId)
+        public CommentViewModel AddComment(string author, string content, int postId)
         {
             var comment = new Comment
             {
@@ -76,6 +75,8 @@
             };
 
             this.view.Comments.Insert(0, commentView);
+
+            return commentView;
         }
     }
 }

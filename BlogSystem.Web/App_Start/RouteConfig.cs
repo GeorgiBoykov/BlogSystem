@@ -13,7 +13,7 @@ namespace BlogSystem.Web
             routes.MapPageRoute("CustomErrorPage", "CustomErrorPage", "~/CustomErrorPage.aspx");
 
             var settings = new FriendlyUrlSettings();
-            settings.AutoRedirectMode = RedirectMode.Permanent;
+            settings.AutoRedirectMode = RedirectMode.Off;
             routes.EnableFriendlyUrls(settings);
         }
     }

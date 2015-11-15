@@ -2,9 +2,6 @@
 namespace BlogSystem.Web
 {
     using System.Collections.Generic;
-    using System.Net;
-    using System.Web;
-    using System.Web.Services;
 
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
@@ -94,11 +91,13 @@ namespace BlogSystem.Web
                 this.DataBind();
             }
         }
-        
+
         protected void addCommentBtn_OnClick(object sender, EventArgs e)
         {
-            this.presenter.AddComment(this.commentAuthor.Text, this.addComment.Text, this.Id);
+            this.presenter.AddComment(this.addCommentAuthor.Text, this.addCommentContent.Text, this.Id);
             this.DataBind();
+            this.addCommentAuthor.Text = string.Empty;
+            this.addCommentContent.Text = string.Empty;
         }
     }
 }
