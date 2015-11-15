@@ -8,18 +8,26 @@
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
 
-    public partial class Posts : Page, IPostsView
+    public partial class Blog : Page, IBlogView
     {
-        private readonly PostsPresenter presenter;
+        private readonly BlogPresenter presenter;
 
-        protected Posts()
+        protected Blog()
         {
-            this.presenter = new PostsPresenter(this);
+            this.presenter = new BlogPresenter(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.presenter.Initialize();
+            try
+            {
+                var username = this.RouteData.Values["username"].ToString();
+                this.presenter.Initialize(username);
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
         }
 
         public List<PostViewModel> PostItems

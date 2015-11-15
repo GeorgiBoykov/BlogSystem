@@ -4,7 +4,7 @@
 
     using BlogSystem.Web.Models.ViewModels;
 
-    public interface IPostsView
+    public interface IBlogView
     {
         List<PostViewModel> PostItems { set; }
     }

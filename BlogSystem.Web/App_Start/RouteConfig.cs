@@ -11,6 +11,8 @@ namespace BlogSystem.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapPageRoute("CustomErrorPage", "CustomErrorPage", "~/CustomErrorPage.aspx");
+            routes.MapPageRoute("User", "{username}", "~/Blog.aspx");
+            routes.MapPageRoute("Post", "{username}/post/{id}", "~/Post.aspx");
 
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Off;

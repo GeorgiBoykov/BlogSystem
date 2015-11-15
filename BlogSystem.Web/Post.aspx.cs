@@ -20,8 +20,8 @@ namespace BlogSystem.Web
         {
             try
             {
-                this.presenter.Initialize(int.Parse(this.Request.QueryString["id"]));
-            }
+                this.presenter.Initialize(int.Parse(this.RouteData.Values["id"].ToString()));
+        }
             catch (Exception ex)
             {
                 this.Response.RedirectToRoute("CustomErrorPage", new {ErrorMessage = ex.Message});

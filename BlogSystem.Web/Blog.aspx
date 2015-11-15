@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Posts" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Posts.aspx.cs" Inherits="BlogSystem.Web.Posts" %>
+﻿<%@ Page Title="Blog" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Blog.aspx.cs" Inherits="BlogSystem.Web.Blog" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Repeater runat="server" ID="postsRepeater" >
         <ItemTemplate>
-            <asp:HyperLink runat="server" NavigateUrl='<%# this.Eval("Id", "Post.aspx?id={0}") %>'>
+            <asp:HyperLink runat="server" NavigateUrl='<%# this.Eval("Id", "admin/post/{0}") %>'>
                 <blockquote>
                     <h2><%# this.Eval("PostTitle") %></h2>
                     <p class="post-content"><%# this.Eval("Content") %></p>

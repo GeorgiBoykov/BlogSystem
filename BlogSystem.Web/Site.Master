@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Georgi Petrov's Blog</title>
+    <title><%: Page.Title %> - Blog System</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -46,11 +46,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <a class="navbar-brand" runat="server" href="~/">Blog System</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Posts.aspx">Posts</a></li>
+                        <% if (this.Request.IsAuthenticated)
+                           { %>
+                                <li><a href='<% this.Response.Write("/" + HttpContext.Current.User.Identity.Name); %>'>My Blog</a></li>
+                          <% } %>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                     </ul>
@@ -78,7 +81,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Georgi Petrov's Blog</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Blog System</p>
             </footer>
         </div>
     </form>

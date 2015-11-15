@@ -134,7 +134,7 @@ Fusce leo tortor, efficitur at hendrerit nec, gravida id elit.",
         private void SeedUsers(BlogSystemDbContext context)
         {
             var userManager = new UserManager<User>(new UserStore<User>(context));
-            var userToInsert = new User { UserName = "georgipetrov02@gmail.com", Email = "georgipetrov02@gmail.com" };
+            var userToInsert = new User { UserName = "admin", Email = "georgipetrov02@gmail.com" };
             userManager.Create(userToInsert, "Aa-1234");
             userManager.AddToRole(userToInsert.Id, "Admin");
         }

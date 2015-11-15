@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Presenters
 {
+    using System;
     using System.Linq;
 
     using BlogSystem.Data.Interfaces;
@@ -7,24 +8,32 @@
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Views;
 
-    public class PostsPresenter : BasePresenter
+    public class BlogPresenter : BasePresenter
     {
-        private readonly IPostsView view;
+        private readonly IBlogView view;
 
-        public PostsPresenter(IPostsView view)
+        public BlogPresenter(IBlogView view)
         {
             this.view = view;
         }
 
-        public PostsPresenter(IPostsView view, IBlogSystemData data)
+        public BlogPresenter(IBlogView view, IBlogSystemData data)
         {
             this.view = view;
             this.Data = data;
         }
         
-        public void Initialize()
+        public void Initialize(string username)
         {
-            var postsPreviews= this.Data.Posts.All()
+            var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
+
+            if (user == null)
+            {
+                throw new ArgumentException(string.Format("User with username {0} not found", username));
+            }
+
+            
+            var postsPreviews= user.Posts
                 .OrderByDescending(p => p.DateCreated)
                 .Select(
                         p =>

@@ -10,7 +10,7 @@
 namespace BlogSystem.Web {
     
     
-    public partial class Posts {
+    public partial class Blog {
         
         /// <summary>
         /// postsRepeater control.
