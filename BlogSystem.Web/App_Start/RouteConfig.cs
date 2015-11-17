@@ -11,8 +11,14 @@ namespace BlogSystem.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapPageRoute("CustomErrorPage", "CustomErrorPage", "~/CustomErrorPage.aspx");
-            routes.MapPageRoute("User", "{username}", "~/Blog.aspx");
-            routes.MapPageRoute("Post", "{username}/post/{id}", "~/Post.aspx");
+
+            routes.MapPageRoute("User", "{username}", "~/Blog.aspx",false,null,
+                new RouteValueDictionary { {"username", "^((?!Account|Contact|About|NewPost).)*$" } });
+
+            routes.MapPageRoute("Post", "{username}/{title}", "~/Post.aspx", false, null,
+                new RouteValueDictionary { { "username", "^((?!Account).)*$" } });
+
+            routes.MapPageRoute("Tag", "tags/show/{name}", "~/Tag.aspx");
 
             var settings = new FriendlyUrlSettings();
             settings.AutoRedirectMode = RedirectMode.Off;

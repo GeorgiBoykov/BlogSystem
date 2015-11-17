@@ -23,13 +23,21 @@
             this.view = view;
         }
 
-        public void Initialize(int id)
+        public void Initialize(string username, string title)
         {
-            var post = this.Data.Posts.Find(id);
+            //var post = this.Data.Posts.Find(id);
+            var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
+
+            if (user == null)
+            {
+                throw new ArgumentException(string.Format("User with username {0} not found", username));
+            }
+
+            var post = user.Posts.FirstOrDefault(p => p.Title == title);
 
             if (post == null)
             {
-                throw new ArgumentException(string.Format("Post with id {0} not found", id));
+                throw new ArgumentException(string.Format("Post with title {0} not found", title));
             }
 
             this.view.PostTitle = post.Title;

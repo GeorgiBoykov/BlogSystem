@@ -31,7 +31,6 @@
             {
                 throw new ArgumentException(string.Format("User with username {0} not found", username));
             }
-
             
             var postsPreviews= user.Posts
                 .OrderByDescending(p => p.DateCreated)
@@ -43,12 +42,13 @@
                             PostTitle = p.Title,
                             Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
                             Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
-                            Content = p.Content.Substring(0,200) + "...",
+                            Content = p.Content.Length > 200 ? p.Content.Substring(0,200) + "..." : p.Content,
+                            DateCreated = p.DateCreated,
                             Tags = p.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name }).ToList()
                         })
                     .ToList();
 
-            this.view.PostItems = postsPreviews;
+            this.view.Posts = postsPreviews;
         }
     }
 }

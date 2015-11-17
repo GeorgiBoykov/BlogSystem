@@ -6,6 +6,6 @@
 
     public interface IBlogView
     {
-        List<PostViewModel> PostItems { set; }
+        List<PostViewModel> Posts { set; }
     }
 }

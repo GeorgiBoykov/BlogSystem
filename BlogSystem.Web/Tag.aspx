@@ -1,6 +1,8 @@
-﻿<%@ Page Title="Blog" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Blog.aspx.cs" Inherits="BlogSystem.Web.Blog" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="Site.Master" CodeBehind="Tag.aspx.cs" Inherits="BlogSystem.Web.Tag" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+    <h2>Posts by tag: <asp:Label runat="server" ID="tagName"></asp:Label></h2>
+    
     <asp:Repeater runat="server" ID="postsRepeater" >
         <ItemTemplate>
             <asp:HyperLink runat="server" NavigateUrl='<%# this.Eval("PostTitle", "admin/{0}") %>'>

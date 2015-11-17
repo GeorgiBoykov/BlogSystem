@@ -19,18 +19,18 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 var username = this.RouteData.Values["username"].ToString();
                 this.presenter.Initialize(username);
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            //}
         }
 
-        public List<PostViewModel> PostItems
+        public List<PostViewModel> Posts
         {
             set
             {

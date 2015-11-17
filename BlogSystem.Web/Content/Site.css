@@ -29,6 +29,36 @@ a:hover {
     font-size: 12px;
 }
 
+.comments-panel {
+    margin-top: 12px;
+}
+
+.comments {
+    margin-top: 12px;
+}
+
+.comment {
+    padding: 10px;
+    margin: 4px;
+}
+
+.new-post-form {
+    width: 80%;
+    margin-top: 30px;
+}
+
+.bootstrap-tagsinput {
+    width: 100%;
+}
+.label {
+    line-height: 2 !important;
+}
+.form-control {
+    margin-bottom: 7px;
+}
+.add-comment > textarea {
+    width: 500px;
+}
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
 input[type="password"],
