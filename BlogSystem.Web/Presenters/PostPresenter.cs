@@ -60,7 +60,7 @@
                             Content = c.Content,
                             DateCreated = c.DateCreated
                         }).ToList();
-            this.view.Tags = post.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name }).ToList();
+            this.view.Tags = post.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name, Slug = t.Slug}).ToList();
         }
 
         public CommentViewModel AddComment(string author, string content)

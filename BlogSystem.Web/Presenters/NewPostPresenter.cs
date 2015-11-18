@@ -68,7 +68,11 @@
                 {
                     if (!tags.Any(t => t.Name == tagName))
                     {
-                        var tag = new Tag { Name = tagName };
+                        var tag = new Tag
+                                      {
+                                          Name = tagName,
+                                          Slug = this.ResolveSubjectForUrl(tagName)
+                                      };
                         this.Data.Tags.Add(tag);
                     }
                 }

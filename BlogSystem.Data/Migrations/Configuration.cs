@@ -79,8 +79,8 @@ namespace BlogSystem.Data.Migrations
 
         private void SeedTags(BlogSystemDbContext context)
         {
-            var tag1 = new Tag { Name = "TestTag1" };
-            var tag2 = new Tag { Name = "TestTag1" };
+            var tag1 = new Tag { Name = "TestTag1", Slug = "TestTag1" };
+            var tag2 = new Tag { Name = "TestTag1", Slug = "TestTag2" };
 
             context.Tags.AddOrUpdate(tag1, tag2);
         }

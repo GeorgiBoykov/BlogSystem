@@ -21,7 +21,7 @@
             <asp:Repeater runat="server" ID="tags">
                 <ItemTemplate>
                     <asp:HyperLink runat="server" CssClass="label label-info mini"
-                        NavigateUrl='<%# this.Eval("Name", "tags/show/{0}") %>'
+                        NavigateUrl='<%# this.Eval("Slug", "tags/show/{0}") %>'
                          Text='<%# this.Eval("Name") %>'></asp:HyperLink>
                 </ItemTemplate>
             </asp:Repeater>

@@ -43,8 +43,7 @@
                             Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
                             Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
                             Content = p.Content.Length > 200 ? p.Content.Substring(0,200) + "..." : p.Content,
-                            DateCreated = p.DateCreated,
-                            Tags = p.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name }).ToList()
+                            DateCreated = p.DateCreated
                         })
                     .ToList();
 

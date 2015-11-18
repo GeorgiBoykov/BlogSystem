@@ -24,13 +24,13 @@ namespace BlogSystem.Web.Presenters
             this.view = view;
         }
 
-        public void Initialize(string tagName)
+        public void Initialize(string slug)
         {
-            var tag = this.Data.Tags.All().FirstOrDefault(t => t.Name == tagName);
+            var tag = this.Data.Tags.All().FirstOrDefault(t => t.Slug == slug);
 
             if (tag == null)
             {
-                throw new ArgumentException(string.Format("Tag with name {0} not found", tagName));
+                throw new ArgumentException(string.Format("Tag with name {0} not found", slug));
             }
 
             var posts =
@@ -40,12 +40,11 @@ namespace BlogSystem.Web.Presenters
                         {
                             Id = p.Id,
                             PostTitle = p.Title,
+                            Slug = p.Slug,
                             Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
                             Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
                             Content = p.Content.Length > 200 ? p.Content.Substring(0, 200) + "..." : p.Content,
-                            DateCreated = p.DateCreated,
-                            Tags =
-                                p.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name }).ToList()
+                            DateCreated = p.DateCreated
                         }).ToList();
 
             this.view.Id = tag.Id;
