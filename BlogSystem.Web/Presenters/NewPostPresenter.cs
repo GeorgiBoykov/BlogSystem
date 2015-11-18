@@ -86,6 +86,7 @@
                                Tags = tags
                            };
 
+
             this.Data.Posts.Add(post);
             this.Data.SaveChanges();
         }
