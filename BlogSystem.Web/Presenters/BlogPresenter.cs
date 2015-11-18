@@ -4,7 +4,6 @@
     using System.Linq;
 
     using BlogSystem.Data.Interfaces;
-    using BlogSystem.Web.Models;
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Views;
 

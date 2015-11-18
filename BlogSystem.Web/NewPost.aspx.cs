@@ -79,6 +79,7 @@
             try
             {
                 this.presenter.AddPost();
+                this.Response.RedirectToRoute("User", new { username = this.User.Identity.Name });
             }
             catch (Exception ex)
             {

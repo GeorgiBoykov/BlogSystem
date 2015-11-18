@@ -96,10 +96,17 @@ namespace BlogSystem.Web
 
         protected void addCommentBtn_OnClick(object sender, EventArgs e)
         {
-            this.presenter.AddComment(this.addCommentAuthor.Text, this.addCommentContent.Text, this.Id);
-            this.DataBind();
-            this.addCommentAuthor.Text = string.Empty;
-            this.addCommentContent.Text = string.Empty;
+            try
+            {
+                this.presenter.AddComment(this.addCommentAuthor.Text, this.addCommentContent.Text);
+                this.DataBind();
+                this.addCommentAuthor.Text = string.Empty;
+                this.addCommentContent.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
         }
     }
 }

@@ -7,7 +7,7 @@
 
     public interface IPostView
     {
-        int Id { set; }
+        int Id { get; set; }
 
         string PostTitle { set; }
 

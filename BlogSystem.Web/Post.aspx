@@ -32,8 +32,13 @@
                 <ContentTemplate>
                     
                     <div class="add-comment">
-                        <asp:Label runat="server" AssociatedControlID="addCommentContent">Add comment: </asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="addCommentContent">Add comment: </asp:Label><br/>
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="addCommentAuthor"
+                        CssClass="text-danger" ErrorMessage="The author field is required." Display="Dynamic"/>
                         <asp:TextBox runat="server" ID="addCommentAuthor" placeholder="Your name" CssClass="form-control"></asp:TextBox>
+                        
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="addCommentContent"
+                        CssClass="text-danger" ErrorMessage="The content field is required." Display="Dynamic"/>
                         <asp:TextBox runat="server" ID="addCommentContent" placeholder="Comment..." CssClass="form-control" TextMode="MultiLine">
                         </asp:TextBox>
                         <asp:Button runat="server" CssClass="btn-default" ID="addCommentBtn" OnClick="addCommentBtn_OnClick" Text="Submit"/>

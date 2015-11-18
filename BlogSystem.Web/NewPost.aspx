@@ -9,22 +9,25 @@
         <div class="form-group">
           <asp:Label runat="server" AssociatedControlID="postTitle" CssClass="col-lg-2 control-label">Title</asp:Label>
           <div class="col-lg-10">
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="postTitle"
+             CssClass="text-danger" ErrorMessage="The title field is required." Display="Dynamic"/>
             <asp:TextBox runat="server" CssClass="form-control" ID="postTitle" placeholder="Title"></asp:TextBox>
           </div>
         </div>
         <div class="form-group">
           <asp:Label runat="server" AssociatedControlID="postContent" CssClass="col-lg-2 control-label">Content</asp:Label>
           <div class="col-lg-10">
-            <asp:TextBox runat="server" ID="postContent" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
-            <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="postContent"
+             CssClass="text-danger" ErrorMessage="The content field is required." Display="Dynamic"/>
+            <asp:TextBox runat="server" ID="postContent" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>       
           </div>
         </div>
         <div class="form-group">
           <asp:Label runat="server" AssociatedControlID="postCategory" CssClass="col-lg-2 control-label">Category</asp:Label>
           <div class="col-lg-10">
-            <asp:ListBox runat="server" ID="postCategory" CssClass="form-control" SelectionMode="Multiple">
-           
-            </asp:ListBox>
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="postCategory"
+             CssClass="text-danger" ErrorMessage="The category field is required." Display="Dynamic"/>
+            <asp:ListBox runat="server" ID="postCategory" CssClass="form-control" SelectionMode="Multiple"></asp:ListBox>
           </div>
         </div>
         <div class="form-group" id="bootstrapTagsInputForm">

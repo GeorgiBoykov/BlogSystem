@@ -8,6 +8,8 @@
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Views;
 
+    using Microsoft.Ajax.Utilities;
+
     public class PostPresenter : BasePresenter
     {
         private readonly IPostView view;
@@ -25,7 +27,6 @@
 
         public void Initialize(string username, string title)
         {
-            //var post = this.Data.Posts.Find(id);
             var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
 
             if (user == null)
@@ -61,14 +62,24 @@
             this.view.Tags = post.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name }).ToList();
         }
 
-        public CommentViewModel AddComment(string author, string content, int postId)
+        public CommentViewModel AddComment(string author, string content)
         {
+            if (author.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentException("Missing author name;");
+            }
+
+            if (content.IsNullOrWhiteSpace())
+            {
+                throw new ArgumentException("Missing author name;");
+            }
+
             var comment = new Comment
             {
                 Author = author,
                 Content = content,
                 DateCreated = DateTime.Now,
-                PostId = postId
+                PostId = this.view.Id
             };
 
             this.Data.Comments.Add(comment);
