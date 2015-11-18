@@ -22,7 +22,7 @@ namespace BlogSystem.Web
             {
                 var routeValues = this.RouteData.Values;
                 this.presenter
-                    .Initialize(routeValues["username"].ToString(), routeValues["title"].ToString());
+                    .Initialize(routeValues["username"].ToString(), routeValues["slug"].ToString());
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace BlogSystem.Web
                 this.postTitle.Text = value;
             }
         }
-
+        
         public string Content
         {
             set

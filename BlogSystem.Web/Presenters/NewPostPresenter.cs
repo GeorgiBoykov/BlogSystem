@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
 
     using BlogSystem.Data.Interfaces;
     using BlogSystem.Models;
@@ -79,6 +80,7 @@
             var post = new BlogSystem.Models.Post
                            {
                                Title = this.view.PostTitle,
+                               Slug = this.ResolveSubjectForUrl(this.view.PostTitle),
                                Content = this.view.Content,
                                CategoryId = category.Id,
                                AuthorId = this.view.AuthorId,
@@ -89,6 +91,11 @@
 
             this.Data.Posts.Add(post);
             this.Data.SaveChanges();
+        }
+
+        private string ResolveSubjectForUrl(string subject)
+        {
+            return Regex.Replace(Regex.Replace(subject, "[^\\w]", "-"), "[-]{2,}", "-");
         }
     }
 }

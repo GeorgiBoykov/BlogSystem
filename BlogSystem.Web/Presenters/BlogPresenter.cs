@@ -39,6 +39,7 @@
                         {
                             Id = p.Id,
                             PostTitle = p.Title,
+                            Slug = p.Slug,
                             Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
                             Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
                             Content = p.Content.Length > 200 ? p.Content.Substring(0,200) + "..." : p.Content,

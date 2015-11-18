@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Text.RegularExpressions;
 
     using BlogSystem.Data.Interfaces;
     using BlogSystem.Models;
@@ -25,7 +26,7 @@
             this.view = view;
         }
 
-        public void Initialize(string username, string title)
+        public void Initialize(string username, string slug)
         {
             var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
 
@@ -34,11 +35,11 @@
                 throw new ArgumentException(string.Format("User with username {0} not found", username));
             }
 
-            var post = user.Posts.FirstOrDefault(p => p.Title == title);
+            var post = user.Posts.FirstOrDefault(p => p.Slug == slug);
 
             if (post == null)
             {
-                throw new ArgumentException(string.Format("Post with title {0} not found", title));
+                throw new ArgumentException(string.Format("Post with title {0} not found", slug));
             }
 
             this.view.PostTitle = post.Title;

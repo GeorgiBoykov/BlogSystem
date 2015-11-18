@@ -103,6 +103,7 @@ namespace BlogSystem.Data.Migrations
 Fusce leo tortor, efficitur at hendrerit nec, gravida id elit. Vivamus placerat lorem non nunc egestas, eu placerat nisi cursus. Aliquam erat volutpat. Morbi vestibulum enim ut ante imperdiet egestas. Mauris posuere placerat facilisis. Donec porta porttitor semper. Praesent sed accumsan metus. Pellentesque non malesuada neque, nec semper enim.
 Vestibulum eleifend, magna et euismod fermentum, urna neque tristique orci, sit amet efficitur quam quam ut libero. Proin elit turpis, efficitur eget imperdiet ac, dictum sit amet orci. Vestibulum vulputate quam nisl, vel interdum arcu lobortis eget. Vestibulum sodales iaculis erat id malesuada. Nulla consectetur suscipit lorem at mattis. Curabitur lobortis imperdiet nisl. Praesent tincidunt pulvinar velit, in sagittis nulla semper in. Nullam non lacus odio. Morbi congue facilisis suscipit. Vestibulum in ullamcorper neque, sed sollicitudin lacus. Sed nec erat vitae tortor elementum bibendum ut eu eros. Nulla facilisi.",
                                 Title = "Test Post 1",
+                                Slug = "Test-Post-1",
                                 DateCreated = DateTime.Now,
                                 Tags = new List<Tag>(context.Tags),
             };
@@ -113,7 +114,8 @@ Vestibulum eleifend, magna et euismod fermentum, urna neque tristique orci, sit 
                                 CategoryId = context.Categories.FirstOrDefault().Id,
                 Content = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non neque bibendum, facilisis leo quis, aliquam nulla. Donec lobortis sodales volutpat. Integer at ante id magna pretium eleifend et quis mauris. Mauris imperdiet viverra lacus vel tincidunt. Curabitur in vehicula lectus. Donec sit amet dolor et orci lacinia tempus. Praesent ligula metus, interdum eget purus in, vehicula hendrerit tellus. In hac habitasse platea dictumst. Aenean quis ullamcorper mauris. Maecenas volutpat sapien id nisl convallis suscipit. Suspendisse venenatis sem a lacus imperdiet convallis vitae vitae felis. In vestibulum sapien sed tincidunt gravida. Phasellus mollis sodales metus a efficitur. Sed ut ipsum ac nunc vestibulum tristique quis euismod est. Suspendisse potenti.
 Fusce leo tortor, efficitur at hendrerit nec, gravida id elit.",
-                Title = "Test Post 2",
+                                Title = "Test Post 2",
+                                Slug = "Test-Post-2",
                                 DateCreated = DateTime.Now,
                                 Tags = new List<Tag>(context.Tags),
                             };

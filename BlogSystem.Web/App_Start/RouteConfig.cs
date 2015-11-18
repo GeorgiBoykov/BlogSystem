@@ -15,7 +15,7 @@ namespace BlogSystem.Web
             routes.MapPageRoute("User", "{username}", "~/Blog.aspx",false,null,
                 new RouteValueDictionary { {"username", "^((?!Account|Contact|About|NewPost).)*$" } });
 
-            routes.MapPageRoute("Post", "{username}/{title}", "~/Post.aspx", false, null,
+            routes.MapPageRoute("Post", "{username}/{slug}", "~/Post.aspx", false, null,
                 new RouteValueDictionary { { "username", "^((?!Account).)*$" } });
 
             routes.MapPageRoute("Tag", "tags/show/{name}", "~/Tag.aspx");

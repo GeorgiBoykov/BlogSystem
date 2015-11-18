@@ -17,6 +17,8 @@
         [Required]
         public string Title { get; set; }
 
+        public string Slug { get; set; }
+
         [MinLength(2)]
         public string Content { get; set; }
 
