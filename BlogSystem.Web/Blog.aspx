@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Repeater runat="server" ID="postsRepeater" >
         <ItemTemplate>
-            <asp:HyperLink runat="server" NavigateUrl='<%# this.Eval("Slug", "admin/{0}") %>'>
+            <asp:HyperLink runat="server" NavigateUrl='<%# this.Eval("Author.UserName") + "/" + this.Eval("Slug") %>'>
                 <blockquote>
                     <h2><%# this.Eval("PostTitle") %></h2>
                     <p class="post-content"><%# this.Eval("Content") %></p>
