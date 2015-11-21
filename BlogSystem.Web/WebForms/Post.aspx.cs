@@ -149,10 +149,10 @@ namespace BlogSystem.Web
 
             if (!string.IsNullOrEmpty(ipList))
             {
-                return ipList.Split(',')[0];
+                return ipList.Split(',')[0].Split(':')[0];
             }
 
-            return Request.ServerVariables["REMOTE_ADDR"];
+            return Request.ServerVariables["REMOTE_ADDR"].Split(':')[0];
         }
     }
 }
