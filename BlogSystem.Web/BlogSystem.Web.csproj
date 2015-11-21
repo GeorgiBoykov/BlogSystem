@@ -378,6 +378,7 @@
     <Compile Include="Models\ViewModels\LikeViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Presenters\CategoryPresenter.cs" />
+    <Compile Include="Utilities\WebExtensions.cs" />
     <Compile Include="WebForms\Category.aspx.cs">
       <DependentUpon>Category.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

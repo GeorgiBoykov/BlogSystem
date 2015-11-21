@@ -15,7 +15,7 @@
 
         CategoryViewModel Category { set; }
 
-        AuthorViewModel Author { set; }
+        AuthorViewModel Author { get; set; }
 
         DateTime DateCreated { set; }
 

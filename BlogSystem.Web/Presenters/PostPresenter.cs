@@ -67,8 +67,9 @@
                         {
                             Id = l.Id,
                             PostId = l.PostId,
-                            UserId = l.UserId
-                        })
+                            UserId = l.UserId,
+                            IpAddress = l.IpAddress
+                    })
                     .ToList();
         }
 
@@ -108,23 +109,32 @@
             return commentView;
         }
 
-        public void LikePost(string userId)
+        public void LikePost(string userId, string ipAddress)
         {
+            if (this.view.Author.Id == userId)
+            {
+                throw new ArgumentException("Authors cannot like their own posts");
+            }
+
             if (this.Data.Likes.All()
-                .Any(l => l.PostId == this.view.Id && l.UserId == userId))
+                .Any(l => 
+                (l.PostId == this.view.Id && l.UserId == userId) ||
+                (l.PostId == this.view.Id && l.IpAddress == ipAddress) ))
             {
                 throw new ArgumentException("Post already liked.");
             }
 
-            var like = new Like { PostId = this.view.Id, UserId = userId };
+            var like = new Like { PostId = this.view.Id, UserId = userId, IpAddress = ipAddress };
 
             this.Data.Likes.Add(like);
+            this.Data.SaveChanges();
 
             var likeView = new LikeViewModel
                                {
                                    Id = like.Id,
                                    PostId = like.PostId,
-                                   UserId = userId
+                                   UserId = userId,
+                                   IpAddress = ipAddress
                                };
 
             this.view.Likes.Add(likeView);

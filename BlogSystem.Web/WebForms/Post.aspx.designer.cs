@@ -40,13 +40,13 @@ namespace BlogSystem.Web {
         protected global::System.Web.UI.WebControls.Label content;
         
         /// <summary>
-        /// author control.
+        /// authorUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label author;
+        protected global::System.Web.UI.WebControls.Label authorUsername;
         
         /// <summary>
         /// dateCreated control.

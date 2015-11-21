@@ -5,15 +5,18 @@ namespace BlogSystem.Web
 
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
+    using BlogSystem.Web.Utilities;
     using BlogSystem.Web.Views;
-
+    
     using Microsoft.AspNet.Identity;
 
     public partial class Post : System.Web.UI.Page, IPostView
     {
         private readonly PostPresenter presenter;
 
-        private List<LikeViewModel> likes; 
+        private List<LikeViewModel> likes;
+
+        private AuthorViewModel author;
 
         protected Post()
         {
@@ -63,9 +66,14 @@ namespace BlogSystem.Web
 
         public AuthorViewModel Author
         {
+            get
+            {
+                return this.author;
+            }
             set
             {
-                this.author.Text = value.UserName;
+                this.author = value;
+                this.authorUsername.Text = value.UserName;
             }
         }
 
@@ -133,7 +141,8 @@ namespace BlogSystem.Web
         {
             try
             {
-                this.presenter.LikePost(this.User.Identity.GetUserId() ?? this.GetUserIP());
+                this.presenter.LikePost(this.User.Identity.GetUserId(), WebExtensions.GetUserIp(this.Request));
+
                 this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
                 this.likesPanel.Update();
             }
@@ -141,18 +150,6 @@ namespace BlogSystem.Web
             {
                 this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
-        }
-
-        private string GetUserIP()
-        {
-            string ipList = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-            if (!string.IsNullOrEmpty(ipList))
-            {
-                return ipList.Split(',')[0].Split(':')[0];
-            }
-
-            return Request.ServerVariables["REMOTE_ADDR"].Split(':')[0];
         }
     }
 }

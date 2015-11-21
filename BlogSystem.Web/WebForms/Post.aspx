@@ -11,7 +11,7 @@
         <p class="post-content"><asp:Label runat="server" ID="content"></asp:Label></p>
         <div class="attributes">
             <em> — Posted by: 
-                <asp:Label runat="server" ID="author"></asp:Label>
+                <asp:Label runat="server" ID="authorUsername"></asp:Label>
                  on 
                 <asp:Label runat="server" ID="dateCreated"></asp:Label>
             </em>
