@@ -64,6 +64,14 @@
             }
         }
 
+        public IRepository<Like> Likes
+        {
+            get
+            {
+                return this.GetRepository<Like>();
+            }
+        }
+
         public int SaveChanges()
         {
             return this.context.SaveChanges();

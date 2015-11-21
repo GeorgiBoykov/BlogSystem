@@ -179,12 +179,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="CustomErrorPage.aspx" />
+    <Content Include="WebForms\Category.aspx" />
+    <Content Include="WebForms\CustomErrorPage.aspx" />
     <Content Include="Account\Web.config" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="NewPost.aspx" />
-    <Content Include="Post.aspx" />
-    <Content Include="Blog.aspx" />
+    <Content Include="WebForms\NewPost.aspx" />
+    <Content Include="WebForms\Post.aspx" />
+    <Content Include="WebForms\Blog.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -228,7 +229,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
-    <Content Include="Tag.aspx" />
+    <Content Include="WebForms\Tag.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -374,11 +375,21 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CustomErrorPage.aspx.cs">
+    <Compile Include="Models\ViewModels\LikeViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserViewModel.cs" />
+    <Compile Include="Presenters\CategoryPresenter.cs" />
+    <Compile Include="WebForms\Category.aspx.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Category.aspx.designer.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\CustomErrorPage.aspx.cs">
       <DependentUpon>CustomErrorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CustomErrorPage.aspx.designer.cs">
+    <Compile Include="WebForms\CustomErrorPage.aspx.designer.cs">
       <DependentUpon>CustomErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -389,27 +400,27 @@
     <Compile Include="Models\ViewModels\CommentViewModel.cs" />
     <Compile Include="Models\ViewModels\PostViewModel.cs" />
     <Compile Include="Models\ViewModels\TagViewModel.cs" />
-    <Compile Include="NewPost.aspx.cs">
+    <Compile Include="WebForms\NewPost.aspx.cs">
       <DependentUpon>NewPost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NewPost.aspx.designer.cs">
+    <Compile Include="WebForms\NewPost.aspx.designer.cs">
       <DependentUpon>NewPost.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presenters\BasePresenter.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Post.aspx.cs">
+    <Compile Include="WebForms\Post.aspx.cs">
       <DependentUpon>Post.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Post.aspx.designer.cs">
+    <Compile Include="WebForms\Post.aspx.designer.cs">
       <DependentUpon>Post.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Blog.aspx.cs">
+    <Compile Include="WebForms\Blog.aspx.cs">
       <DependentUpon>Blog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Blog.aspx.designer.cs">
+    <Compile Include="WebForms\Blog.aspx.designer.cs">
       <DependentUpon>Blog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presenters\NewPostPresenter.cs" />
@@ -432,11 +443,11 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="Tag.aspx.cs">
+    <Compile Include="WebForms\Tag.aspx.cs">
       <DependentUpon>Tag.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tag.aspx.designer.cs">
+    <Compile Include="WebForms\Tag.aspx.designer.cs">
       <DependentUpon>Tag.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">

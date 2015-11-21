@@ -23,6 +23,8 @@
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Like> Likes { get; set; } 
+
         public static BlogSystemDbContext Create()
         {
             return new BlogSystemDbContext();

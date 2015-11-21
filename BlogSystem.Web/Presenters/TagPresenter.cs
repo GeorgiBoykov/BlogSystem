@@ -34,7 +34,9 @@ namespace BlogSystem.Web.Presenters
             }
 
             var posts =
-                tag.Posts.Select(
+                tag.Posts
+                .OrderByDescending(p => p.DateCreated)
+                .Select(
                     p =>
                     new PostViewModel
                         {

@@ -13,7 +13,9 @@
         
         IRepository<Post> Posts { get; }
         
-        IRepository<Comment> Comments { get; }   
+        IRepository<Comment> Comments { get; }
+          
+        IRepository<Like> Likes { get; }  
         
         int SaveChanges();
     }

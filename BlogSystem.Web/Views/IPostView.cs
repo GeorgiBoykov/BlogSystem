@@ -22,5 +22,7 @@
         List<CommentViewModel> Comments { get; set; }
 
         List<TagViewModel> Tags { set; }
+
+        List<LikeViewModel> Likes { get; set; } 
     }
 }

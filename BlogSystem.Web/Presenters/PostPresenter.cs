@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Text.RegularExpressions;
 
     using BlogSystem.Data.Interfaces;
     using BlogSystem.Models;
@@ -61,6 +60,16 @@
                             DateCreated = c.DateCreated
                         }).ToList();
             this.view.Tags = post.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name, Slug = t.Slug}).ToList();
+            this.view.Likes =
+                post.Likes.Select(
+                    l =>
+                    new LikeViewModel
+                        {
+                            Id = l.Id,
+                            PostId = l.PostId,
+                            User = new UserViewModel { Id = l.UserId, Username = l.User.UserName }
+                        })
+                    .ToList();
         }
 
         public CommentViewModel AddComment(string author, string content)
@@ -97,6 +106,32 @@
             this.view.Comments.Insert(0, commentView);
 
             return commentView;
+        }
+
+        public void LikePost(string userId)
+        {
+            if (this.Data.Likes.All().Any(l => l.PostId == this.view.Id && l.UserId == userId))
+            {
+                throw new ArgumentException("Post already liked.");
+            }
+
+            var like = new Like { PostId = this.view.Id, UserId = userId };
+
+            this.Data.Likes.Add(like);
+
+            var likeView = new LikeViewModel
+                               {
+                                   Id = like.Id,
+                                   PostId = like.PostId,
+                                   User = new UserViewModel
+                                              {
+                                                  Id = like.UserId,
+                                                  Username = like.User.UserName,
+                                              }
+                               };
+
+            this.view.Likes.Add(likeView);
+            this.Data.SaveChanges();
         }
     }
 }

@@ -7,9 +7,13 @@ namespace BlogSystem.Web
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
 
+    using Microsoft.AspNet.Identity;
+
     public partial class Post : System.Web.UI.Page, IPostView
     {
         private readonly PostPresenter presenter;
+
+        private List<LikeViewModel> likes; 
 
         protected Post()
         {
@@ -53,6 +57,7 @@ namespace BlogSystem.Web
             set
             {
                 this.category.Text = value.Name;
+                this.category.NavigateUrl = string.Format("../categories/show/{0}",value.Name);
             }
         }
 
@@ -94,14 +99,43 @@ namespace BlogSystem.Web
             }
         }
 
+        public List<LikeViewModel> Likes
+        {
+            get
+            {
+                return this.likes;
+            }
+
+            set
+            {
+                this.likes = value;
+                this.likeBtn.Text = string.Format("Like: {0}", value.Count);
+            }
+        }
+
         protected void addCommentBtn_OnClick(object sender, EventArgs e)
         {
             try
             {
                 this.presenter.AddComment(this.addCommentAuthor.Text, this.addCommentContent.Text);
                 this.DataBind();
+                this.commentsPanel.Update();
                 this.addCommentAuthor.Text = string.Empty;
                 this.addCommentContent.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
+        }
+
+        protected void likeBtn_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                this.presenter.LikePost(this.User.Identity.GetUserId());
+                this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
+                this.likesPanel.Update();
             }
             catch (Exception ex)
             {

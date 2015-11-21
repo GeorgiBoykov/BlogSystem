@@ -71,7 +71,7 @@
                         var tag = new Tag
                                       {
                                           Name = tagName,
-                                          Slug = this.ResolveSubjectForUrl(tagName)
+                                          Slug = this.CreateSlug(tagName)
                                       };
                         this.Data.Tags.Add(tag);
                     }
@@ -84,7 +84,7 @@
             var post = new BlogSystem.Models.Post
                            {
                                Title = this.view.PostTitle,
-                               Slug = this.ResolveSubjectForUrl(this.view.PostTitle),
+                               Slug = this.CreateSlug(string.Format("{0}-{1}", this.view.PostTitle, DateTime.Now.Millisecond)),
                                Content = this.view.Content,
                                CategoryId = category.Id,
                                AuthorId = this.view.AuthorId,
@@ -97,7 +97,7 @@
             this.Data.SaveChanges();
         }
 
-        private string ResolveSubjectForUrl(string subject)
+        private string CreateSlug(string subject)
         {
             return Regex.Replace(Regex.Replace(subject, "[^\\w]", "-"), "[-]{2,}", "-");
         }

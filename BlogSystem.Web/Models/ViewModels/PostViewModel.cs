@@ -23,6 +23,8 @@
 
         public List<TagViewModel> Tags { get; set; }
 
+        public List<LikeViewModel> Likes { get; set; }
+
         public DateTime DateCreated { get; set; }
     }
 }

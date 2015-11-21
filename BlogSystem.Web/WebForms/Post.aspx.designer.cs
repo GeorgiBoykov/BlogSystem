@@ -28,7 +28,7 @@ namespace BlogSystem.Web {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label category;
+        protected global::System.Web.UI.WebControls.HyperLink category;
         
         /// <summary>
         /// content control.
@@ -65,6 +65,33 @@ namespace BlogSystem.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater tags;
+        
+        /// <summary>
+        /// likesPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel likesPanel;
+        
+        /// <summary>
+        /// likeBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button likeBtn;
+        
+        /// <summary>
+        /// commentsPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel commentsPanel;
         
         /// <summary>
         /// addCommentAuthor control.
