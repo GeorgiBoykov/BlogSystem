@@ -133,7 +133,7 @@ namespace BlogSystem.Web
         {
             try
             {
-                this.presenter.LikePost(this.User.Identity.GetUserId());
+                this.presenter.LikePost(this.User.Identity.GetUserId() ?? this.GetUserIP());
                 this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
                 this.likesPanel.Update();
             }
@@ -141,6 +141,18 @@ namespace BlogSystem.Web
             {
                 this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
+        }
+
+        private string GetUserIP()
+        {
+            string ipList = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+            if (!string.IsNullOrEmpty(ipList))
+            {
+                return ipList.Split(',')[0];
+            }
+
+            return Request.ServerVariables["REMOTE_ADDR"];
         }
     }
 }

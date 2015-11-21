@@ -67,7 +67,7 @@
                         {
                             Id = l.Id,
                             PostId = l.PostId,
-                            User = new UserViewModel { Id = l.UserId, Username = l.User.UserName }
+                            UserId = l.UserId
                         })
                     .ToList();
         }
@@ -110,7 +110,8 @@
 
         public void LikePost(string userId)
         {
-            if (this.Data.Likes.All().Any(l => l.PostId == this.view.Id && l.UserId == userId))
+            if (this.Data.Likes.All()
+                .Any(l => l.PostId == this.view.Id && l.UserId == userId))
             {
                 throw new ArgumentException("Post already liked.");
             }
@@ -123,11 +124,7 @@
                                {
                                    Id = like.Id,
                                    PostId = like.PostId,
-                                   User = new UserViewModel
-                                              {
-                                                  Id = like.UserId,
-                                                  Username = like.User.UserName,
-                                              }
+                                   UserId = userId
                                };
 
             this.view.Likes.Add(likeView);
