@@ -183,6 +183,7 @@
     <Content Include="WebForms\CustomErrorPage.aspx" />
     <Content Include="Account\Web.config" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="WebForms\Home.aspx" />
     <Content Include="WebForms\NewPost.aspx" />
     <Content Include="WebForms\Post.aspx" />
     <Content Include="WebForms\Blog.aspx" />
@@ -379,8 +380,10 @@
     <Compile Include="Models\ViewModels\LikeViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Presenters\CategoryPresenter.cs" />
+    <Compile Include="Presenters\HomePresenter.cs" />
     <Compile Include="Presenters\SearchPresenter.cs" />
     <Compile Include="Utilities\WebExtensions.cs" />
+    <Compile Include="Views\IHomeView.cs" />
     <Compile Include="Views\ISearchView.cs" />
     <Compile Include="WebForms\Category.aspx.cs">
       <DependentUpon>Category.aspx</DependentUpon>
@@ -404,6 +407,13 @@
     <Compile Include="Models\ViewModels\CommentViewModel.cs" />
     <Compile Include="Models\ViewModels\PostViewModel.cs" />
     <Compile Include="Models\ViewModels\TagViewModel.cs" />
+    <Compile Include="WebForms\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\NewPost.aspx.cs">
       <DependentUpon>NewPost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

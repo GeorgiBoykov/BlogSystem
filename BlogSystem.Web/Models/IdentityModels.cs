@@ -52,7 +52,7 @@ namespace BlogSystem.Web.Models
             }
             else
             {
-                response.Redirect("~/");
+                response.Redirect("~/Home");
             }
         }
     }

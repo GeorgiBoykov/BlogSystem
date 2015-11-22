@@ -12,7 +12,7 @@
                     <%# this.Eval("PostTitle") %>
                 </a>
             </ItemTemplate>
-        </asp:Repeater>    
+        </asp:Repeater>
     </div>
 
     <div class="users-result">

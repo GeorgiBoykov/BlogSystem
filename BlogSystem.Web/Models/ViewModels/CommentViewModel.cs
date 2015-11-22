@@ -12,6 +12,8 @@
 
         public string Author { get; set; }
 
+        public PostViewModel Post { get; set; }
+
         public DateTime DateCreated { get; set; }
     }
 }
