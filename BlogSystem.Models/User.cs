@@ -12,9 +12,15 @@
         public User()
         {
             this.Posts = new HashSet<Post>();
+            this.Followers = new HashSet<User>();
+            this.Following = new HashSet<User>();
         }
 
         public virtual ICollection<Post> Posts { get; set; }
+
+        public virtual ICollection<User> Followers { get; set; }
+
+        public virtual ICollection<User> Following { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {

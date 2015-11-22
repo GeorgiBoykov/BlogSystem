@@ -7,22 +7,20 @@
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
 
-    public partial class Tag : System.Web.UI.Page, ITagView
+    public partial class Search : System.Web.UI.Page, ISearchView
     {
-        private readonly TagPresenter presenter;
+        private readonly SearchPresenter presenter;
 
-        protected Tag()
+        protected Search()
         {
-            this.presenter = new TagPresenter(this);    
+            this.presenter = new SearchPresenter(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                var routeValues = this.RouteData.Values;
-                this.presenter
-                    .Initialize(routeValues["name"].ToString());
+                this.presenter.Initialize(this.RouteData.Values["term"].ToString());
             }
             catch (Exception ex)
             {
@@ -30,29 +28,28 @@
             }
         }
 
-        public int Id { get; set; }
-
-        public string Name
+        public List<PostViewModel> PostResults
         {
             get
             {
-                return this.tagName.Text;
+                return this.postsResults.DataSource as List<PostViewModel>;
             }
             set
             {
-                this.tagName.Text = value;
+                this.postsResults.DataSource = value;
+                this.DataBind();
             }
         }
 
-        public List<PostViewModel> Posts
+        public List<UserViewModel> UserResults
         {
             get
             {
-                return this.postsRepeater.DataSource as List<PostViewModel>;
+                return this.usersResults.DataSource as List<UserViewModel>;
             }
             set
             {
-                this.postsRepeater.DataSource = value;
+                this.usersResults.DataSource = value;
                 this.DataBind();
             }
         }

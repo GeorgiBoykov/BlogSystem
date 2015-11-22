@@ -1,6 +1,6 @@
-﻿using System;
-namespace BlogSystem.Web
+﻿namespace BlogSystem.Web.WebForms
 {
+    using System;
     using System.Collections.Generic;
 
     using BlogSystem.Web.Models.ViewModels;
@@ -54,6 +54,8 @@ namespace BlogSystem.Web
                 this.content.Text = value;
             }
         }
+
+        public string Slug { get; set; }
 
         public CategoryViewModel Category
         {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Tag.aspx.cs" Inherits="BlogSystem.Web.Tag" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Tag.aspx.cs" Inherits="BlogSystem.Web.WebForms.Tag" %>
 
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
     <h2>Posts by tag: <asp:Label runat="server" ID="tagName"></asp:Label></h2>

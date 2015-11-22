@@ -1,4 +1,4 @@
-﻿namespace BlogSystem.Web
+﻿namespace BlogSystem.Web.WebForms
 {
     using System;
     using System.Collections.Generic;

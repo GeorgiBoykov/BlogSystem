@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BlogSystem.Web {
+namespace BlogSystem.Web.WebForms {
     
     
     public partial class NewPost {

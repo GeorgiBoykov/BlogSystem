@@ -76,6 +76,11 @@ namespace BlogSystem.Web
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+        
+        protected void searchBtn_OnClick(object sender, EventArgs e)
+        {
+            this.Response.Redirect("/search/" + this.searchBox.Text);
+        }
     }
 
 }

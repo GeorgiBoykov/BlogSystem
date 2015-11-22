@@ -13,6 +13,8 @@
 
         string Content { set; }
 
+        string Slug { set; }
+
         CategoryViewModel Category { set; }
 
         AuthorViewModel Author { get; set; }

@@ -6,6 +6,8 @@
 
     public interface IBlogView
     {
+        UserViewModel Owner { get; set; }
+
         List<PostViewModel> Posts { set; }
     }
 }

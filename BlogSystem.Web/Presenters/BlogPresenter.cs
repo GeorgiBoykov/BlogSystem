@@ -42,12 +42,43 @@
                             Slug = p.Slug,
                             Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
                             Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
-                            Content = p.Content.Length > 200 ? p.Content.Substring(0,200) + "..." : p.Content,
+                            Content = p.Content.Length > 300 ? p.Content.Substring(0, 300) + "..." : p.Content,
                             DateCreated = p.DateCreated
                         })
                     .ToList();
 
+            this.view.Owner = new UserViewModel
+                                  {
+                                      Id = user.Id,
+                                      Username = username,
+                                      Followers =
+                                          user.Followers.Select(
+                                              u => new UserViewModel { Id = u.Id, Username = u.UserName })
+                                          .Take(5)
+                                          .ToList(),
+                                      Following =
+                                          user.Following.Select(
+                                              u => new UserViewModel { Id = u.Id, Username = u.UserName })
+                                          .Take(5)
+                                          .ToList()
+                                  };
+
             this.view.Posts = postsPreviews;
+        }
+
+        public void Follow(string loggedUserId)
+        {
+            if (loggedUserId == this.view.Owner.Id)
+            {
+                throw new ArgumentException("Users cannot follow themselves.");
+            }
+
+            var loggedUser = this.Data.Users.Find(loggedUserId);
+            var userToFollow = this.Data.Users.Find(this.view.Owner.Id);
+            
+            loggedUser.Following.Add(userToFollow);
+
+            this.Data.SaveChanges();
         }
     }
 }

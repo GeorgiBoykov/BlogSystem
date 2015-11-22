@@ -55,6 +55,12 @@
                                 <li><a runat="server" href="~/NewPost">New Post</a></li>
                           <% } %>
                     </ul>
+                    <div class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <asp:TextBox runat="server" ID="searchBox" CssClass="form-control" placeholder="Search"></asp:TextBox>
+                        </div>
+                        <asp:Button runat="server" ID="searchBtn" CssClass="btn btn-default" Text="Search" OnClick="searchBtn_OnClick"/>
+                    </div>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
