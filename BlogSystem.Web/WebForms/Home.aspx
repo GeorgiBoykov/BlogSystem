@@ -37,12 +37,12 @@
         <div class="col-md-4">
             <div class="panel panel-primary">
               <div class="panel-heading">
-                <h3 class="panel-title">Famous Tags</h3>
+                <span class="panel-title">Famous Tags</span>
               </div>
               <div class="panel-body">
                 <asp:Repeater runat="server" ID="famousTags">
                     <ItemTemplate>
-                        <asp:HyperLink runat="server" CssClass="btn btn-info btn-xs"
+                        <asp:HyperLink runat="server" CssClass="btn btn-info btn-xs margin-bottom"
                             NavigateUrl='<%# this.Eval("Slug", "../tags/show/{0}") %>'
                              Text='<%# this.Eval("Name") %>'></asp:HyperLink>
                     </ItemTemplate>

@@ -34,10 +34,11 @@
                     .Select(p => new PostViewModel
                                      {
                                          Slug = p.Slug,
-                                         PostTitle = p.Title,
+                                         PostTitle = p.Title.Length > 80 ? p.Title.Substring(0, 80) + "..." : p.Title,
                                          Content = p.Content.Length > 300 ? p.Content.Substring(0, 300) + "..." : p.Content,
                                          Author = new AuthorViewModel { UserName = p.Author.UserName }
                     })
+                    .Take(5)
                     .ToList();
 
             var latestComments =
@@ -49,7 +50,7 @@
                         new CommentViewModel
                             {
                                 Author = c.Author,
-                                Content = c.Content.Length > 100 ? c.Content.Substring(0, 100) + "..." : c.Content,
+                                Content = c.Content.Length > 80 ? c.Content.Substring(0, 80) + "..." : c.Content,
                                 DateCreated = c.DateCreated,
                                 Post = new PostViewModel
                                            {
@@ -57,6 +58,7 @@
                                                Slug = c.Post.Slug
                                            }
                             })
+                            .Take(5)
                             .ToList();
 
             var famousTags =
