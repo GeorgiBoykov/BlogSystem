@@ -77,12 +77,12 @@
         {
             if (author.IsNullOrWhiteSpace())
             {
-                throw new ArgumentException("Missing author name;");
+                throw new ArgumentException("Missing author name.");
             }
 
             if (content.IsNullOrWhiteSpace())
             {
-                throw new ArgumentException("Missing author name;");
+                throw new ArgumentException("Missing content.");
             }
 
             var comment = new Comment

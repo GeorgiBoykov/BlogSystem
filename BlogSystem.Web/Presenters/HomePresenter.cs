@@ -1,5 +1,6 @@
 ﻿namespace BlogSystem.Web.Presenters
 {
+    using System;
     using System.Data.Entity;
     using System.Linq;
 
@@ -25,6 +26,12 @@
         public void Initialize(string loggedUserId)
         {
             var loggedUser = this.Data.Users.Find(loggedUserId);
+
+            if (loggedUser == null)
+            {
+                throw new ArgumentException("This page requires to be logged in");
+            }
+
             var following = loggedUser.Following.Select(f => f.Id);
 
             var latestPosts =

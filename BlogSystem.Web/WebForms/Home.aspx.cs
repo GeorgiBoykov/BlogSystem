@@ -11,16 +11,23 @@
 
     public partial class Home : System.Web.UI.Page, IHomeView
     {
-        private HomePresenter presenter;
+        private readonly HomePresenter presenter;
 
-        public Home()
+        protected Home()
         {
             this.presenter = new HomePresenter(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.presenter.Initialize(this.User.Identity.GetUserId());    
+            try
+            {
+                this.presenter.Initialize(this.User.Identity.GetUserId());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
         }
 
         public List<PostViewModel> LatestPosts

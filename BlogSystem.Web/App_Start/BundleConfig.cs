@@ -22,6 +22,11 @@ namespace BlogSystem.Web
                             "~/Scripts/WebForms/TreeView.js",
                             "~/Scripts/WebForms/WebParts.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Noty").Include(
+                            "~/Scripts/jquery.noty.packaged.js",
+                            "~/Scripts/Custom/notificationModule.js"
+                            ));
+
             // Order is very important for these files to work, they have explicit dependencies
             bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
                     "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",

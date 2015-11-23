@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.UI;
 
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
@@ -133,9 +134,14 @@
                 this.addCommentAuthor.Text = string.Empty;
                 this.addCommentContent.Text = string.Empty;
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "myKey",
+                    string.Format("notificationModule.showErrorMessage('{0}')", ex.Message),
+                    true);
             }
         }
 
@@ -148,9 +154,14 @@
                 this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
                 this.likesPanel.Update();
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "myKey",
+                    string.Format("notificationModule.showErrorMessage('{0}')", ex.Message),
+                    true);
             }
         }
     }

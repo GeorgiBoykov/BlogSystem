@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -10,6 +7,8 @@ using Microsoft.AspNet.Identity;
 
 namespace BlogSystem.Web
 {
+    using Microsoft.Ajax.Utilities;
+
     public partial class SiteMaster : MasterPage
     {
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
@@ -79,7 +78,15 @@ namespace BlogSystem.Web
         
         protected void searchBtn_OnClick(object sender, EventArgs e)
         {
-            this.Response.Redirect("/search/" + this.searchBox.Text);
+            if (!this.searchBox.Text.IsNullOrWhiteSpace())
+            {
+                this.Response.Redirect("/search/" + this.searchBox.Text.Trim());
+            }
+            else
+            {
+                this.searchBox.Attributes.Add("placeholder","Try again ?");
+                this.searchBox.Focus();
+            }
         }
     }
 

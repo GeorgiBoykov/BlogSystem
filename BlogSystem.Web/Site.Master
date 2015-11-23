@@ -98,6 +98,7 @@
                 </ul>
                 <p>&copy; <%: DateTime.Now.Year %> - Blogge</p>
             </footer>
+            <%: Scripts.Render("~/bundles/Noty") %>
         </div>
     </form>
 </body>

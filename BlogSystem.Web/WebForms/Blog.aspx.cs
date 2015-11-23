@@ -75,9 +75,14 @@
                 this.presenter.Follow(this.User.Identity.GetUserId());
                 this.follow.Visible = false;
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "myKey",
+                    string.Format("notificationModule.showErrorMessage('{0}')", ex.Message),
+                    true);
             }
         }
     }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.UI;
 
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
@@ -21,7 +22,14 @@
         {
             if (!this.IsPostBack)
             {
-                this.presenter.Initialize();
+                try
+                {
+                    this.presenter.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+                }
             }
         }
 
@@ -81,9 +89,14 @@
                 this.presenter.AddPost();
                 this.Response.RedirectToRoute("User", new { username = this.User.Identity.Name });
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "myKey",
+                    string.Format("notificationModule.showErrorMessage('{0}')",ex.Message),
+                    true);
             }
         }
     }
