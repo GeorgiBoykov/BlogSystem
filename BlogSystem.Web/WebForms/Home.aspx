@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="list-group" id="latest-posts">
-                <span class="list-group-item active">Latest Posts</span>
+                <span class="list-group-item active">Posts Feed</span>
                 <asp:Repeater runat="server" ID="latestPosts">
                     <ItemTemplate>
                         <a href="<%# string.Format("/{0}/{1}", this.Eval("Author.UserName"), this.Eval("Slug")) %>" class="list-group-item">

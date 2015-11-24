@@ -1,6 +1,6 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    padding-top: 50px;
+    padding-top: 80px;
     padding-bottom: 20px;
 }
 
@@ -57,9 +57,7 @@ a:hover {
 .margin-bottom {
     margin-bottom: 7px;
 }
-.add-comment > textarea {
-    width: 500px;
-}
+
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input[type="text"],
 input[type="password"],

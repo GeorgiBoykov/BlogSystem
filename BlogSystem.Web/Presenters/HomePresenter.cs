@@ -50,7 +50,7 @@
 
             var latestComments =
                 this.Data.Comments.All()
-                    .Where(c => c.Post.AuthorId == loggedUserId)
+                    .Where(c => following.Contains(c.Post.AuthorId) || c.Post.AuthorId == loggedUserId)
                     .OrderByDescending(c => c.DateCreated)
                     .Select(
                         c =>
