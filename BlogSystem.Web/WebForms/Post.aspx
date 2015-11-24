@@ -57,9 +57,9 @@
                                 <ItemTemplate>
                                     <div class="well comment">
                                         <p> <%# this.Eval("Content") %></p>
-                                        <em class="mini"> — By: 
+                                        <em class="mini"> —  
                                             <span><%# this.Eval("Author") %></span>
-                                             on 
+                                             at 
                                             <span><%# this.Eval("DateCreated", "{0:d}") %></span>
                                         </em>
                                     </div>

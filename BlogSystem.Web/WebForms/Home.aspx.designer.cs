@@ -13,13 +13,13 @@ namespace BlogSystem.Web.WebForms {
     public partial class Home {
         
         /// <summary>
-        /// latestPosts control.
+        /// postsFeed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater latestPosts;
+        protected global::System.Web.UI.WebControls.Repeater postsFeed;
         
         /// <summary>
         /// latestComments control.

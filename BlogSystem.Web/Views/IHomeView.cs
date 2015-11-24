@@ -6,7 +6,7 @@
 
     public interface IHomeView
     {
-        List<PostViewModel> LatestPosts { get; set; }
+        List<PostViewModel> PostsFeed { get; set; }
 
         List<CommentViewModel> LatestComments { get; set; } 
         

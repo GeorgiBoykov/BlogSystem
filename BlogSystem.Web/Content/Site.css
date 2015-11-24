@@ -1,6 +1,6 @@
 ﻿/* Move down content because we have a fixed navbar that is 50px tall */
 body {
-    padding-top: 80px;
+    padding-top: 75px;
     padding-bottom: 20px;
 }
 
@@ -16,6 +16,10 @@ body {
 */
 .dl-horizontal dt {
     white-space: normal;
+}
+
+.jumbotron {
+    padding: 15px;
 }
 
 a:hover {

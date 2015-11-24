@@ -1,7 +1,6 @@
 ﻿namespace BlogSystem.Web.Presenters
 {
     using System;
-    using System.Data.Entity;
     using System.Linq;
 
     using BlogSystem.Data.Interfaces;
@@ -34,7 +33,7 @@
 
             var following = loggedUser.Following.Select(f => f.Id);
 
-            var latestPosts =
+            var postsFeed =
                 this.Data.Posts.All()
                     .Where(p => following.Contains(p.AuthorId))
                     .OrderByDescending(p => p.DateCreated)
@@ -42,8 +41,8 @@
                                      {
                                          Slug = p.Slug,
                                          PostTitle = p.Title.Length > 80 ? p.Title.Substring(0, 80) + "..." : p.Title,
-                                         Content = p.Content.Length > 300 ? p.Content.Substring(0, 300) + "..." : p.Content,
-                                         Author = new AuthorViewModel { UserName = p.Author.UserName }
+                                         Author = new AuthorViewModel { UserName = p.Author.UserName },
+                                         DateCreated = p.DateCreated
                     })
                     .Take(5)
                     .ToList();
@@ -72,10 +71,10 @@
                 this.Data.Tags.All()
                     .OrderByDescending(t => t.Posts.Count)
                     .Select(t => new TagViewModel { Name = t.Name, Slug = t.Slug })
-                    .Take(10)
+                    .Take(15)
                     .ToList();
 
-            this.view.LatestPosts = latestPosts;
+            this.view.PostsFeed = postsFeed;
             this.view.LatestComments = latestComments;
             this.view.FamousTags = famousTags;
         }

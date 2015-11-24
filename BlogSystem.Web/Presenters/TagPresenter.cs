@@ -26,7 +26,7 @@ namespace BlogSystem.Web.Presenters
 
         public void Initialize(string slug)
         {
-            var tag = this.Data.Tags.All().FirstOrDefault(t => t.Slug == slug);
+            var tag = this.Data.Tags.All().FirstOrDefault(t => t.Slug.ToLower() == slug.ToLower());
 
             if (tag == null)
             {

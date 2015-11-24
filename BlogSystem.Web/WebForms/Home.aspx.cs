@@ -30,15 +30,15 @@
             }
         }
 
-        public List<PostViewModel> LatestPosts
+        public List<PostViewModel> PostsFeed
         {
             get
             {
-                return this.latestPosts.DataSource as List<PostViewModel>;
+                return this.postsFeed.DataSource as List<PostViewModel>;
             }
             set
             {
-                this.latestPosts.DataSource = value;
+                this.postsFeed.DataSource = value;
                 this.DataBind();
             }
         }

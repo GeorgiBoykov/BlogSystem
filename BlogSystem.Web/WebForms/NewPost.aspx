@@ -1,7 +1,8 @@
-﻿<%@ Page Title="NewPost" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="NewPost.aspx.cs" Inherits="BlogSystem.Web.WebForms.NewPost" %>
+﻿<%@ Page Title="NewPost" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="NewPost.aspx.cs" Inherits="BlogSystem.Web.WebForms.NewPost" ValidateRequest="false"%>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
   <script src='<%= this.ResolveClientUrl("~/Scripts/bootstrap-tagsinput.min.js") %>' type="text/javascript"></script>
+  <script src='<%= this.ResolveClientUrl("~/Scripts/ckeditor/ckeditor.js") %>' type="text/javascript"></script>
     <div class="row">
         <div class="col-lg-11">
             <div class="new-post-form">
@@ -16,16 +17,16 @@
                     </div>
                 </div>
         
-                <div class="form-group margin-bottom">
+                <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="postContent" CssClass="col-lg-2 control-label">Content</asp:Label>
                     <div class="col-lg-10">
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="postContent" ValidationGroup="NewPostGroup"
                         CssClass="text-danger" ErrorMessage="The content field is required." Display="Dynamic"/>
-                    <asp:TextBox runat="server" ID="postContent" CssClass="form-control margin-bottom" TextMode="MultiLine" Rows="5"></asp:TextBox>       
+                    <asp:TextBox runat="server" TextMode="MultiLine" CssClass="ckeditor margin-bottom" ID="postContent"></asp:TextBox>
                     </div>
                 </div>
         
-                <div class="form-group margin-bottom">
+                <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="postCategory" CssClass="col-lg-2 control-label">Category</asp:Label>
                     <div class="col-lg-10">
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="postCategory" ValidationGroup="NewPostGroup"
@@ -34,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="form-group margin-bottom" id="bootstrapTagsInputForm">
+                <div class="form-group" id="bootstrapTagsInputForm">
                     <asp:Label runat="server" AssociatedControlID="postTags" CssClass="col-lg-2 control-label">Tags</asp:Label>
                     <div class="col-xs-8">
                         <asp:TextBox runat="server" ID="postTags" name="tags" CssClass="form-control" data-role="tagsinput"></asp:TextBox>
