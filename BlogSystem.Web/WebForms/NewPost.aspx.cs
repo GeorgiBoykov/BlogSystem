@@ -20,6 +20,11 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.Request.IsAuthenticated)
+            {
+                this.Response.Redirect("/");
+            }
+
             if (!this.IsPostBack)
             {
                 try

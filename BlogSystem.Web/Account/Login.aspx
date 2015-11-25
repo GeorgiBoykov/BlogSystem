@@ -16,36 +16,39 @@
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Username" CssClass="col-md-2 control-label">Username</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Username" CssClass="form-control"/>
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Username"
-                                CssClass="text-danger" ErrorMessage="The username field is required." ValidationGroup="loginGroup" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" 
-                                CssClass="text-danger" ErrorMessage="The password field is required."  ValidationGroup="loginGroup" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+                    <asp:Panel runat="server" DefaultButton="LoginBtn">
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="Username" CssClass="col-md-2 control-label">Username</asp:Label>
+                            <div class="col-md-10">
+                                <asp:TextBox runat="server" ID="Username" CssClass="form-control"/>
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="Username"
+                                    CssClass="text-danger" ErrorMessage="The username field is required." ValidationGroup="loginGroup" />
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
+                            <div class="col-md-10">
+                                <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" 
+                                    CssClass="text-danger" ErrorMessage="The password field is required."  ValidationGroup="loginGroup" />
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    <asp:CheckBox runat="server" ID="RememberMe" />
+                                    <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <asp:Button runat="server" ID="LoginBtn" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
+                            </div>
+                        </div>
+                    </asp:Panel>
                 </div>
+
                 <p>
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
                 </p>

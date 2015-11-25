@@ -36,5 +36,20 @@ CKEDITOR.editorConfig = function (config) {
     // Simplify the dialog windows.
     config.removeDialogTabs = 'image:advanced;link:advanced';
 
+    // Custom
     config.htmlEncodeOutput = true;
+
+    CKEDITOR.on('instanceReady', function (ev) {
+        ev.editor.dataProcessor.writer.setRules('br',
+         {
+             indent: false,
+             breakBeforeOpen: false,
+             breakAfterOpen: false,
+             breakBeforeClose: false,
+             breakAfterClose: false
+         });
+    });
+
+    config.enterMode = CKEDITOR.ENTER_BR;
+    config.shiftEnterMode = CKEDITOR.ENTER_BR;
 };
