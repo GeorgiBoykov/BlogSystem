@@ -150,7 +150,6 @@
             try
             {
                 this.presenter.LikePost(this.User.Identity.GetUserId(), WebExtensions.GetUserIp(this.Request));
-
                 this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
                 this.likesPanel.Update();
             }

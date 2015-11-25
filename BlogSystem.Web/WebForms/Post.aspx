@@ -2,14 +2,17 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <div class="col-lg-11">
+        <div class="col-lg-10 col-lg-offset-2">
             <div id="post">
             <h2>
                 <asp:Label runat="server" ID="postTitle"></asp:Label>
                 <asp:HyperLink runat="server" ID="category" CssClass="label label-default mini"></asp:HyperLink>
             </h2>
 
-            <p class="post-content"><asp:Label runat="server" ID="content"></asp:Label></p>
+            <div class="post-content">
+                <asp:Label runat="server" ID="content"></asp:Label>
+            </div>
+
             <div class="attributes">
                 <em> — Posted by: 
                     <asp:Label runat="server" ID="authorUsername"></asp:Label>

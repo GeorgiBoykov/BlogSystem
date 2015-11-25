@@ -1,4 +1,4 @@
-﻿<%@ Page Title="NewPost" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="NewPost.aspx.cs" Inherits="BlogSystem.Web.WebForms.NewPost" ValidateRequest="false"%>
+﻿<%@ Page Title="NewPost" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="NewPost.aspx.cs" Inherits="BlogSystem.Web.WebForms.NewPost"%>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
   <script src='<%= this.ResolveClientUrl("~/Scripts/bootstrap-tagsinput.min.js") %>' type="text/javascript"></script>
@@ -8,6 +8,7 @@
             <div class="new-post-form">
               <fieldset>
                 <legend>New Post</legend>
+                
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="postTitle" CssClass="col-lg-2 control-label">Title</asp:Label>
                     <div class="col-lg-10">
@@ -52,4 +53,7 @@
             </div>
         </div>
     </div>
+<%--    <script type="text/javascript">
+        CKEDITOR.config.htmlEncodeOutput = true;
+    </script>--%>
 </asp:Content>

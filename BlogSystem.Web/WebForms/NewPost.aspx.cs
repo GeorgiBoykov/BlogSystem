@@ -45,7 +45,7 @@
         {
             get
             {
-                return this.postContent.Text;
+                return this.Server.HtmlDecode(this.postContent.Text);
             }
         }
 

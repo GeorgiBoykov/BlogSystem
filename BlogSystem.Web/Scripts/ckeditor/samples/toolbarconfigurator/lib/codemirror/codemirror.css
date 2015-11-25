@@ -60,8 +60,11 @@
 .cm-animate-fat-cursor {
   width: auto;
   border: 0;
+    /* ReSharper disable once InvalidValue */
   -webkit-animation: blink 1.06s steps(1) infinite;
+    /* ReSharper disable once InvalidValue */
   -moz-animation: blink 1.06s steps(1) infinite;
+    /* ReSharper disable once InvalidValue */
   animation: blink 1.06s steps(1) infinite;
 }
 @-moz-keyframes blink {

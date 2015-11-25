@@ -8,16 +8,17 @@
     </h2>
     
     <div class="row">
-        <div class="col-md-9">
+        
+        <div class="col-md-8">
             <asp:Repeater runat="server" ID="postsRepeater" >
                 <ItemTemplate>
-                    <asp:HyperLink runat="server" NavigateUrl='<%# "/" + this.Eval("Author.UserName") + "/" + this.Eval("Slug") %>'>
-                        <blockquote>
-                            <h2><%# this.Eval("PostTitle") %></h2>
-                            <p class="post-content"><%# this.Eval("Content") %></p>
-                            <small><%# this.Eval("Author.UserName") %> at <%# this.Eval("DateCreated") %></small>
-                        </blockquote>
-                    </asp:HyperLink>
+                    <blockquote>
+                        <asp:HyperLink runat="server" NavigateUrl='<%# "/" + this.Eval("Author.UserName") + "/" + this.Eval("Slug") %>'>
+                                <h2><%# this.Eval("PostTitle") %></h2>
+                                <p class="post-content"><%# this.Eval("Content") %></p>
+                                <small><%# this.Eval("Author.UserName") %> at <%# this.Eval("DateCreated") %></small>
+                        </asp:HyperLink>
+                    </blockquote>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
@@ -42,6 +43,7 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
+
         </div>
     </div>
 </asp:Content>
