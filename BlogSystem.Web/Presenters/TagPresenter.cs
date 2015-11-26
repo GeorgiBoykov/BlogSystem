@@ -7,6 +7,7 @@ namespace BlogSystem.Web.Presenters
 {
     using BlogSystem.Data.Interfaces;
     using BlogSystem.Web.Models.ViewModels;
+    using BlogSystem.Web.Utilities;
     using BlogSystem.Web.Views;
 
     public class TagPresenter : BasePresenter
@@ -45,7 +46,7 @@ namespace BlogSystem.Web.Presenters
                             Slug = p.Slug,
                             Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
                             Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
-                            Content = p.Content.Length > 200 ? p.Content.Substring(0, 200) + "..." : p.Content,
+                            Content = p.Content.Length > 300 ? WebExtensions.TruncateHtml(p.Content, 300) : p.Content,
                             DateCreated = p.DateCreated
                         }).ToList();
 
