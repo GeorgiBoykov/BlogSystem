@@ -27,7 +27,7 @@ a:hover {
 }
 
 .post-content {
-    white-space: pre-wrap;
+    white-space: pre-line;
 }
 
 .mini {

@@ -37,7 +37,7 @@ CKEDITOR.editorConfig = function (config) {
     config.removeDialogTabs = 'image:advanced;link:advanced';
 
     // Custom
-    config.htmlEncodeOutput = true;
+    //config.htmlEncodeOutput = false;
 
     CKEDITOR.on('instanceReady', function (ev) {
         ev.editor.dataProcessor.writer.setRules('br',

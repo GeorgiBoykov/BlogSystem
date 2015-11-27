@@ -128,7 +128,10 @@
         {
             try
             {
-                this.presenter.AddComment(this.addCommentAuthor.Text, this.addCommentContent.Text);
+                this.presenter.AddComment(
+                    this.Server.HtmlEncode(this.addCommentAuthor.Text),
+                    this.Server.HtmlEncode(this.addCommentContent.Text));
+
                 this.DataBind();
                 this.commentsPanel.Update();
                 this.addCommentAuthor.Text = string.Empty;

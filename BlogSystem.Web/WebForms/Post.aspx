@@ -1,16 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Post.aspx.cs" MasterPageFile="~/Site.Master" Inherits="BlogSystem.Web.WebForms.Post" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Post.aspx.cs" MasterPageFile="~/Site.Master" Inherits="BlogSystem.Web.WebForms.Post" ValidateRequest="false"%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
-        <div class="col-lg-10 col-lg-offset-2">
+        <div class="col-lg-10 col-lg-offset-1">
             <div id="post">
             <h2>
                 <asp:Label runat="server" ID="postTitle"></asp:Label>
                 <asp:HyperLink runat="server" ID="category" CssClass="label label-default mini"></asp:HyperLink>
             </h2>
 
-            <div class="post-content">
-                <asp:Label runat="server" ID="content"></asp:Label>
+            <div class="post-content margin-bottom">
+                <asp:Literal runat="server" ID="content"></asp:Literal>
             </div>
 
             <div class="attributes">

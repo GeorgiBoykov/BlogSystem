@@ -42,7 +42,7 @@
         {
             get
             {
-                return this.postTitle.Text;
+                return this.Server.HtmlEncode(this.postTitle.Text);
             }
         }
 
@@ -83,7 +83,7 @@
         {
             get
             {
-                return this.postTags.Text;
+                return this.Server.HtmlEncode(this.postTags.Text);
             }
         }
 
@@ -100,7 +100,7 @@
                     this,
                     this.GetType(),
                     "myKey",
-                    string.Format("notificationModule.showErrorMessage('{0}')",ex.Message),
+                    string.Format("notificationModule.showErrorMessage('{0}')", ex.Message),
                     true);
             }
         }
