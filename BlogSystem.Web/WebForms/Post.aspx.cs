@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Web.UI;
 
     using BlogSystem.Web.Models.ViewModels;
@@ -121,6 +122,13 @@
             {
                 this.likes = value;
                 this.likeBtn.Text = string.Format("Like: {0}", value.Count);
+
+                if (this.User.Identity.Name == this.Author.UserName || 
+                    value.Any(l => l.UserId == this.User.Identity.GetUserId()) ||
+                    value.Any(l => l.IpAddress == WebExtensions.GetUserIp(this.Request)))
+                {
+                    this.likeBtn.Attributes.Add("disabled","");
+                }
             }
         }
 
@@ -154,6 +162,7 @@
             {
                 this.presenter.LikePost(this.User.Identity.GetUserId(), WebExtensions.GetUserIp(this.Request));
                 this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
+                this.likeBtn.Attributes.Add("disabled","");
                 this.likesPanel.Update();
             }
             catch (ArgumentException ex)
