@@ -6,8 +6,12 @@
             <div id="post">
             <h2>
                 <asp:Label runat="server" ID="postTitle"></asp:Label>
-                <asp:HyperLink runat="server" ID="category" CssClass="label label-default mini"></asp:HyperLink>
             </h2>
+
+            <div>
+                <asp:HyperLink runat="server" ID="category" CssClass="label label-default mini"></asp:HyperLink>
+                <asp:HyperLink runat="server" ID="edit" CssClass="label label-success mini" Text="Edit Post"></asp:HyperLink>
+            </div>
 
             <div class="post-content margin-bottom">
                 <asp:Literal runat="server" ID="content"></asp:Literal>

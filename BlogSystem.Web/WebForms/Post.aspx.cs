@@ -16,6 +16,8 @@
     {
         private readonly PostPresenter presenter;
 
+        private int id;
+
         private List<LikeViewModel> likes;
 
         private AuthorViewModel author;
@@ -39,7 +41,22 @@
             }
         }
 
-        public int Id { get; set; }
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+            set
+            {
+                this.id = value;
+                this.edit.NavigateUrl = string.Format("../edit/{0}", value);
+                if (this.User.Identity.GetUserId() != this.Author.Id)
+                {
+                    this.edit.Visible = false;
+                }
+            }
+        }
 
         public string PostTitle
         {

@@ -1,7 +1,6 @@
 ﻿namespace BlogSystem.Web.WebForms
 {
     using System;
-    using System.Collections.Generic;
     using System.Web.UI;
 
     using BlogSystem.Web.Presenters;
@@ -9,13 +8,13 @@
 
     using Microsoft.AspNet.Identity;
 
-    public partial class NewPost : System.Web.UI.Page, INewPostView
+    public partial class EditPost : System.Web.UI.Page, IEditPostView
     {
-        private readonly NewPostPresenter presenter;
+        private readonly EditPostPresenter presenter;
 
-        protected NewPost()
+        protected EditPost()
         {
-            this.presenter = new NewPostPresenter(this);
+            this.presenter = new EditPostPresenter(this);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,7 +28,8 @@
             {
                 try
                 {
-                    this.presenter.Initialize();
+                    var routeValues = this.RouteData.Values;
+                    this.presenter.Initialize(int.Parse(routeValues["id"].ToString()));
                 }
                 catch (Exception ex)
                 {
@@ -38,11 +38,27 @@
             }
         }
 
+        public int PostId
+        {
+            get
+            {
+                return int.Parse(this.postId.Text);
+            }
+            set
+            {
+                this.postId.Text = value.ToString();
+            }
+        }
+
         public string PostTitle
         {
             get
             {
-                return this.Server.HtmlEncode(this.postTitle.Text);
+                return this.postTitle.Text;
+            }
+            set
+            {
+                this.postTitle.Text = this.Server.HtmlDecode(value);
             }
         }
 
@@ -52,46 +68,48 @@
             {
                 return this.postContent.Text;
             }
+            set
+            {
+                this.postContent.Text = value;
+            }
         }
 
         public string Category
         {
             get
             {
-                return this.postCategory.SelectedValue;
+                return this.postCategory.Text;
             }
-        }
-
-        public List<string> CategoriesList
-        {
             set
             {
-                this.postCategory.DataSource = value;
-                this.DataBind();
+                this.postCategory.Text = value;
             }
         }
 
-        public string AuthorId
-        {
-            get
-            {
-                return this.User.Identity.GetUserId();
-            }
-        }
+        public string AuthorId { get; set; }
 
         public string Tags
         {
             get
             {
-                return this.Server.HtmlEncode(this.postTags.Text);
+                return this.postTags.Text;
+            }
+            set
+            {
+                this.postTags.Text = this.Server.HtmlDecode(value);
             }
         }
 
-        protected void submitPost_OnClick(object sender, EventArgs e)
+        protected void submitChanges_OnClick(object sender, EventArgs e)
         {
             try
             {
-                this.presenter.AddPost();
+                this.presenter.EditPost(
+                    int.Parse(this.postId.Text),
+                    this.User.Identity.GetUserId(),
+                    this.Server.HtmlEncode(this.postTitle.Text),
+                    this.postContent.Text);
+
                 this.Response.RedirectToRoute("User", new { username = this.User.Identity.Name });
             }
             catch (ArgumentException ex)
