@@ -10,6 +10,6 @@
 
         string Name { set; }
 
-        List<PostViewModel> Posts { set; }
+        List<PostViewModel> Posts { get; set; }
     }
 }
