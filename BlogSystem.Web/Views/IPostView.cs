@@ -9,13 +9,13 @@
     {
         int Id { get; set; }
 
-        string PostTitle { set; }
+        string PostTitle { get; set; }
 
         string Content { set; }
 
         string Slug { set; }
 
-        CategoryViewModel Category { set; }
+        CategoryViewModel Category { get; set; }
 
         AuthorViewModel Author { get; set; }
 

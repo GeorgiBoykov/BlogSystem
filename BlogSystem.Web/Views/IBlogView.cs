@@ -8,6 +8,6 @@
     {
         UserViewModel Owner { get; set; }
 
-        List<PostViewModel> Posts { set; }
+        List<PostViewModel> Posts { get; set; }
     }
 }

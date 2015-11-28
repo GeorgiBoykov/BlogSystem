@@ -49,6 +49,11 @@
 
         public List<PostViewModel> Posts
         {
+            get
+            {
+                return this.postsRepeater.DataSource as List<PostViewModel>;
+            }
+
             set
             {
                 this.postsRepeater.DataSource = value;

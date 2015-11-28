@@ -22,13 +22,13 @@ namespace BlogSystem.Web.WebForms {
         protected global::System.Web.UI.WebControls.Label postTitle;
         
         /// <summary>
-        /// category control.
+        /// categoryName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink category;
+        protected global::System.Web.UI.WebControls.HyperLink categoryName;
         
         /// <summary>
         /// edit control.

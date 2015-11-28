@@ -9,7 +9,7 @@
             </h2>
 
             <div>
-                <asp:HyperLink runat="server" ID="category" CssClass="label label-default mini"></asp:HyperLink>
+                <asp:HyperLink runat="server" ID="categoryName" CssClass="label label-default mini"></asp:HyperLink>
                 <asp:HyperLink runat="server" ID="edit" CssClass="label label-success mini" Text="Edit Post"></asp:HyperLink>
             </div>
 

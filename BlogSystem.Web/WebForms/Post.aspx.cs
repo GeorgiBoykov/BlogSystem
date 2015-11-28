@@ -18,6 +18,8 @@
 
         private AuthorViewModel author;
 
+        private CategoryViewModel category;
+
         private int id;
 
         private List<LikeViewModel> likes;
@@ -46,6 +48,10 @@
 
         public string PostTitle
         {
+            get
+            {
+                return this.postTitle.Text;
+            }
             set
             {
                 this.postTitle.Text = value;
@@ -64,10 +70,15 @@
 
         public CategoryViewModel Category
         {
+            get
+            {
+                return this.category;
+            }
             set
             {
-                this.category.Text = value.Name;
-                this.category.NavigateUrl = string.Format("../categories/show/{0}", value.Name);
+                this.category = value;
+                this.categoryName.Text = value.Name;
+                this.categoryName.NavigateUrl = string.Format("../categories/show/{0}", value.Name);
             }
         }
 
