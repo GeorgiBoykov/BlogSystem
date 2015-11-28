@@ -1,19 +1,17 @@
 ﻿namespace BlogSystem.Web.Views
 {
-    using System.Collections.Generic;
-
     public interface IEditPostView
     {
-        int PostId { get; set; }
+        int PostId { set; }
 
-        string PostTitle { get; set; }
+        string PostTitle { set; }
 
-        string Content { get; set; }
+        string Content { set; }
 
-        string Category { get; set; }
+        string Category { set; }
 
-        string AuthorId { get; set; }
+        string AuthorId { set; }
 
-        string Tags { get; set; }
+        string Tags { set; }
     }
 }

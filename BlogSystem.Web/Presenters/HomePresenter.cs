@@ -9,7 +9,7 @@
 
     public class HomePresenter : BasePresenter
     {
-        private IHomeView view;
+        private readonly IHomeView view;
 
         public HomePresenter(IHomeView view)
         {
@@ -37,13 +37,15 @@
                 this.Data.Posts.All()
                     .Where(p => following.Contains(p.AuthorId))
                     .OrderByDescending(p => p.DateCreated)
-                    .Select(p => new PostViewModel
-                                     {
-                                         Slug = p.Slug,
-                                         PostTitle = p.Title.Length > 80 ? p.Title.Substring(0, 80) + "..." : p.Title,
-                                         Author = new AuthorViewModel { UserName = p.Author.UserName },
-                                         DateCreated = p.DateCreated
-                    })
+                    .Select(
+                        p =>
+                        new PostViewModel
+                            {
+                                Slug = p.Slug,
+                                PostTitle = p.Title.Length > 80 ? p.Title.Substring(0, 80) + "..." : p.Title,
+                                Author = new AuthorViewModel { UserName = p.Author.UserName },
+                                DateCreated = p.DateCreated
+                            })
                     .Take(5)
                     .ToList();
 
@@ -56,16 +58,26 @@
                         new CommentViewModel
                             {
                                 Author = c.Author,
-                                Content = c.Content.Length > 80 ? c.Content.Substring(0, 80) + "..." : c.Content,
+                                Content =
+                                    c.Content.Length > 80
+                                        ? c.Content.Substring(0, 80) + "..."
+                                        : c.Content,
                                 DateCreated = c.DateCreated,
-                                Post = new PostViewModel
-                                           {
-                                               Author = new AuthorViewModel { UserName = c.Post.Author.UserName },
-                                               Slug = c.Post.Slug
-                                           }
+                                Post =
+                                    new PostViewModel
+                                        {
+                                            Author =
+                                                new AuthorViewModel
+                                                    {
+                                                        UserName =
+                                                            c.Post.Author
+                                                            .UserName
+                                                    },
+                                            Slug = c.Post.Slug
+                                        }
                             })
-                            .Take(5)
-                            .ToList();
+                    .Take(5)
+                    .ToList();
 
             var famousTags =
                 this.Data.Tags.All()

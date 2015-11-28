@@ -2,32 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.UI;
 
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
 
-    public partial class Category : System.Web.UI.Page, ICategoryView
+    public partial class Category : Page, ICategoryView
     {
         private readonly CategoryPresenter presenter;
 
         protected Category()
         {
             this.presenter = new CategoryPresenter(this);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var routeValues = this.RouteData.Values;
-                this.presenter
-                    .Initialize(routeValues["name"].ToString());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-            }
         }
 
         public int Id { get; set; }
@@ -54,6 +41,19 @@
             {
                 this.postsRepeater.DataSource = value;
                 this.DataBind();
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var routeValues = this.RouteData.Values;
+                this.presenter.Initialize(routeValues["name"].ToString());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
     }

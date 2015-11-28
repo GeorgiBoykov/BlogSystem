@@ -8,7 +8,7 @@
 
     public class SearchPresenter : BasePresenter
     {
-        private ISearchView view;
+        private readonly ISearchView view;
 
         public SearchPresenter(ISearchView view)
         {

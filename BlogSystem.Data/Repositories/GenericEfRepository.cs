@@ -3,9 +3,11 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class GenericEfRepository<T> : IRepository<T> where T : class
+    public class GenericEfRepository<T> : IRepository<T>
+        where T : class
     {
         private readonly DbContext context;
+
         private readonly IDbSet<T> set;
 
         public GenericEfRepository(DbContext context)

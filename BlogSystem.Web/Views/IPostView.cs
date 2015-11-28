@@ -25,6 +25,6 @@
 
         List<TagViewModel> Tags { set; }
 
-        List<LikeViewModel> Likes { get; set; } 
+        List<LikeViewModel> Likes { get; set; }
     }
 }

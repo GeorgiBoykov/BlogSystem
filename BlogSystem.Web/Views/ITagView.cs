@@ -6,9 +6,9 @@
 
     public interface ITagView
     {
-        int Id { get; set; } 
+        int Id { set; }
 
-        string Name { get; set; }
+        string Name { set; }
 
         List<PostViewModel> Posts { set; }
     }

@@ -28,8 +28,7 @@
 
         public void Initialize()
         {
-            var categories = this.Data.Categories.All().Select(
-                c => c.Name).ToList();
+            var categories = this.Data.Categories.All().Select(c => c.Name).ToList();
 
             this.view.CategoriesList = categories;
         }
@@ -53,14 +52,11 @@
                 throw new ArgumentException("Not existing Category");
             }
 
-            List<string> tagsNames = this.view.Tags
-                .Split(',')
-                .Select(p => p.Trim())
-                .ToList();
+            List<string> tagsNames = this.view.Tags.Split(',').Select(p => p.Trim()).ToList();
 
             List<Tag> tags = new List<Tag>();
 
-            if (tagsNames.Any(t => t != String.Empty))
+            if (tagsNames.Any(t => t != string.Empty))
             {
                 tags = this.Data.Tags.All().Where(t => tagsNames.Contains(t.Name)).ToList();
 
@@ -68,11 +64,7 @@
                 {
                     if (!tags.Any(t => t.Name == tagName))
                     {
-                        var tag = new Tag
-                                      {
-                                          Name = tagName,
-                                          Slug = this.CreateSlug(tagName)
-                                      };
+                        var tag = new Tag { Name = tagName, Slug = this.CreateSlug(tagName) };
                         this.Data.Tags.Add(tag);
                     }
                 }
@@ -81,17 +73,18 @@
                 tags = this.Data.Tags.All().Where(t => tagsNames.Contains(t.Name)).ToList();
             }
 
-            var post = new BlogSystem.Models.Post
+            var post = new Post
                            {
                                Title = this.view.PostTitle,
-                               Slug = this.CreateSlug(string.Format("{0}-{1}", this.view.PostTitle, DateTime.Now.Millisecond)),
+                               Slug =
+                                   this.CreateSlug(
+                                       string.Format("{0}-{1}", this.view.PostTitle, DateTime.Now.Millisecond)),
                                Content = this.view.Content,
                                CategoryId = category.Id,
                                AuthorId = this.view.AuthorId,
                                DateCreated = DateTime.Now,
                                Tags = tags
                            };
-
 
             this.Data.Posts.Add(post);
             this.Data.SaveChanges();

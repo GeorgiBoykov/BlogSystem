@@ -7,10 +7,9 @@
 
     public static class WebExtensions
     {
-
         public static string GetUserIp(HttpRequest request)
         {
-            string ipList = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            var ipList = request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
             if (!string.IsNullOrEmpty(ipList))
             {

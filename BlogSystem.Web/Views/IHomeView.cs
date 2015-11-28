@@ -6,10 +6,10 @@
 
     public interface IHomeView
     {
-        List<PostViewModel> PostsFeed { get; set; }
+        List<PostViewModel> PostsFeed { set; }
 
-        List<CommentViewModel> LatestComments { get; set; } 
-        
-        List<TagViewModel> FamousTags { get; set; }
+        List<CommentViewModel> LatestComments { set; }
+
+        List<TagViewModel> FamousTags { set; }
     }
 }

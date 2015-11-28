@@ -13,7 +13,7 @@
         string Author { get; set; }
 
         PostViewModel Post { get; set; }
- 
+
         DateTime DateCreated { get; set; }
     }
 }

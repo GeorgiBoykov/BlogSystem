@@ -6,8 +6,8 @@
 
     public interface ISearchView
     {
-        List<PostViewModel> PostResults { get; set; }
+        List<PostViewModel> PostResults { set; }
 
-        List<UserViewModel> UserResults { get; set; } 
+        List<UserViewModel> UserResults { set; }
     }
 }

@@ -9,33 +9,13 @@
 
     using Microsoft.AspNet.Identity;
 
-    public partial class NewPost : System.Web.UI.Page, INewPostView
+    public partial class NewPost : Page, INewPostView
     {
         private readonly NewPostPresenter presenter;
 
         protected NewPost()
         {
             this.presenter = new NewPostPresenter(this);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!this.Request.IsAuthenticated)
-            {
-                this.Response.Redirect("/");
-            }
-
-            if (!this.IsPostBack)
-            {
-                try
-                {
-                    this.presenter.Initialize();
-                }
-                catch (Exception ex)
-                {
-                    this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-                }
-            }
         }
 
         public string PostTitle
@@ -84,6 +64,26 @@
             get
             {
                 return this.Server.HtmlEncode(this.postTags.Text);
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.Request.IsAuthenticated)
+            {
+                this.Response.Redirect("/");
+            }
+
+            if (!this.IsPostBack)
+            {
+                try
+                {
+                    this.presenter.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+                }
             }
         }
 

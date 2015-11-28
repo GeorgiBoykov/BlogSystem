@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace BlogSystem.Web.Presenters
+﻿namespace BlogSystem.Web.Presenters
 {
+    using System;
+    using System.Linq;
+
     using BlogSystem.Data.Interfaces;
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Utilities;
@@ -35,20 +33,25 @@ namespace BlogSystem.Web.Presenters
             }
 
             var posts =
-                category.Posts
-                .OrderByDescending(p => p.DateCreated)
-                .Select(
-                    p =>
-                    new PostViewModel
-                    {
-                        Id = p.Id,
-                        PostTitle = p.Title,
-                        Slug = p.Slug,
-                        Author = new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
-                        Category = new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
-                        Content = p.Content.Length > 300 ? WebExtensions.TruncateHtml(p.Content,300) : p.Content,
-                        DateCreated = p.DateCreated
-                    }).ToList();
+                category.Posts.OrderByDescending(p => p.DateCreated)
+                    .Select(
+                        p =>
+                        new PostViewModel
+                            {
+                                Id = p.Id,
+                                PostTitle = p.Title,
+                                Slug = p.Slug,
+                                Author =
+                                    new AuthorViewModel { Id = p.AuthorId, UserName = p.Author.UserName },
+                                Category =
+                                    new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
+                                Content =
+                                    p.Content.Length > 300
+                                        ? WebExtensions.TruncateHtml(p.Content, 300)
+                                        : p.Content,
+                                DateCreated = p.DateCreated
+                            })
+                    .ToList();
 
             this.view.Id = category.Id;
             this.view.Name = category.Name;

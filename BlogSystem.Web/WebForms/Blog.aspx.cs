@@ -23,19 +23,6 @@
             this.presenter = new BlogPresenter(this);
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var username = this.RouteData.Values["username"].ToString();
-                this.presenter.Initialize(username);
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-            }
-        }
-
         public UserViewModel Owner
         {
             get
@@ -46,13 +33,14 @@
             set
             {
                 this.owner = value;
-                this.blogOwner.Text = string.Format("{0}'s blog", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.Username));
+                this.blogOwner.Text = string.Format(
+                    "{0}'s blog",
+                    CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.Username));
                 this.followers.DataSource = value.Followers;
                 this.following.DataSource = value.Following;
 
-                if (!this.Request.IsAuthenticated ||
-                    this.User.Identity.GetUserName() == value.Username ||
-                    value.Followers.Any(u => u.Id == this.User.Identity.GetUserId()))
+                if (!this.Request.IsAuthenticated || this.User.Identity.GetUserName() == value.Username
+                    || value.Followers.Any(u => u.Id == this.User.Identity.GetUserId()))
                 {
                     this.follow.Visible = false;
                 }
@@ -65,6 +53,19 @@
             {
                 this.postsRepeater.DataSource = value;
                 this.DataBind();
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var username = this.RouteData.Values["username"].ToString();
+                this.presenter.Initialize(username);
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
 

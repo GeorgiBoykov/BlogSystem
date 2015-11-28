@@ -27,16 +27,13 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.Followers)
-                .WithMany(u => u.Following)
-                .Map(
-                    m =>
-                        {
-                            m.ToTable("UserFollowers");
-                            m.MapLeftKey("UserId");
-                            m.MapRightKey("FollowerId");
-                        });
+            modelBuilder.Entity<User>().HasMany(u => u.Followers).WithMany(u => u.Following).Map(
+                m =>
+                    {
+                        m.ToTable("UserFollowers");
+                        m.MapLeftKey("UserId");
+                        m.MapRightKey("FollowerId");
+                    });
 
             base.OnModelCreating(modelBuilder);
         }

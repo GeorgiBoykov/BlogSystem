@@ -9,36 +9,22 @@
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Utilities;
     using BlogSystem.Web.Views;
-    
+
     using Microsoft.AspNet.Identity;
 
-    public partial class Post : System.Web.UI.Page, IPostView
+    public partial class Post : Page, IPostView
     {
         private readonly PostPresenter presenter;
+
+        private AuthorViewModel author;
 
         private int id;
 
         private List<LikeViewModel> likes;
 
-        private AuthorViewModel author;
-
         protected Post()
         {
             this.presenter = new PostPresenter(this);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var routeValues = this.RouteData.Values;
-                this.presenter
-                    .Initialize(routeValues["username"].ToString(), routeValues["slug"].ToString());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new {ErrorMessage = ex.Message});
-            }
         }
 
         public int Id
@@ -65,7 +51,7 @@
                 this.postTitle.Text = value;
             }
         }
-        
+
         public string Content
         {
             set
@@ -81,7 +67,7 @@
             set
             {
                 this.category.Text = value.Name;
-                this.category.NavigateUrl = string.Format("../categories/show/{0}",value.Name);
+                this.category.NavigateUrl = string.Format("../categories/show/{0}", value.Name);
             }
         }
 
@@ -140,12 +126,25 @@
                 this.likes = value;
                 this.likeBtn.Text = string.Format("Like: {0}", value.Count);
 
-                if (this.User.Identity.Name == this.Author.UserName || 
-                    value.Any(l => l.UserId == this.User.Identity.GetUserId()) ||
-                    value.Any(l => l.IpAddress == WebExtensions.GetUserIp(this.Request)))
+                if (this.User.Identity.Name == this.Author.UserName
+                    || value.Any(l => l.UserId == this.User.Identity.GetUserId())
+                    || value.Any(l => l.IpAddress == WebExtensions.GetUserIp(this.Request)))
                 {
-                    this.likeBtn.Attributes.Add("disabled","");
+                    this.likeBtn.Attributes.Add("disabled", "");
                 }
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var routeValues = this.RouteData.Values;
+                this.presenter.Initialize(routeValues["username"].ToString(), routeValues["slug"].ToString());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
 
@@ -179,7 +178,7 @@
             {
                 this.presenter.LikePost(this.User.Identity.GetUserId(), WebExtensions.GetUserIp(this.Request));
                 this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
-                this.likeBtn.Attributes.Add("disabled","");
+                this.likeBtn.Attributes.Add("disabled", "");
                 this.likesPanel.Update();
             }
             catch (ArgumentException ex)

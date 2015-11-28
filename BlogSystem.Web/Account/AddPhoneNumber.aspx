@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Phone Number" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPhoneNumber.aspx.cs" Inherits="BlogSystem.Web.Account.AddPhoneNumber" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
+    <h2><%: this.Title %>.</h2>
 
     <div class="form-horizontal">
         <h4>Add a phone number</h4>

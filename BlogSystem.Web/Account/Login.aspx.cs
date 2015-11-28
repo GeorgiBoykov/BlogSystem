@@ -1,58 +1,64 @@
-﻿using System;
-using System.Web;
-using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
-using BlogSystem.Web.Models;
-
-namespace BlogSystem.Web.Account
+﻿namespace BlogSystem.Web.Account
 {
+    using System;
+    using System.Web;
+    using System.Web.UI;
+
+    using BlogSystem.Web.Models;
+
+    using Microsoft.AspNet.Identity.Owin;
+
     public partial class Login : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register";
+            this.RegisterHyperLink.NavigateUrl = "Register";
             // Enable this once you have account confirmation enabled for password reset functionality
             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
+            this.OpenAuthLogin.ReturnUrl = this.Request.QueryString["ReturnUrl"];
+            var returnUrl = HttpUtility.UrlEncode(this.Request.QueryString["ReturnUrl"]);
+            if (!string.IsNullOrEmpty(returnUrl))
             {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+                this.RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             }
         }
 
         protected void LogIn(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (this.IsValid)
             {
                 // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+                var manager = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var signinManager = this.Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
 
                 // This doen't count login failures towards account lockout
                 // To enable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Username.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
+                var result = signinManager.PasswordSignIn(
+                    this.Username.Text,
+                    this.Password.Text,
+                    this.RememberMe.Checked,
+                    false);
 
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                        IdentityHelper.RedirectToReturnUrl(this.Request.QueryString["ReturnUrl"], this.Response);
                         break;
                     case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
+                        this.Response.Redirect("/Account/Lockout");
                         break;
                     case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
-                                                        Request.QueryString["ReturnUrl"],
-                                                        RememberMe.Checked),
-                                          true);
+                        this.Response.Redirect(
+                            string.Format(
+                                "/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}",
+                                this.Request.QueryString["ReturnUrl"],
+                                this.RememberMe.Checked),
+                            true);
                         break;
                     case SignInStatus.Failure:
                     default:
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
+                        this.FailureText.Text = "Invalid login attempt";
+                        this.ErrorMessage.Visible = true;
                         break;
                 }
             }

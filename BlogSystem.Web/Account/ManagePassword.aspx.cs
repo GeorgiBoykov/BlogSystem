@@ -1,88 +1,85 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-
-namespace BlogSystem.Web.Account
+﻿namespace BlogSystem.Web.Account
 {
-    public partial class ManagePassword : System.Web.UI.Page
+    using System;
+    using System.Web;
+    using System.Web.UI;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
+    public partial class ManagePassword : Page
     {
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
+        protected string SuccessMessage { get; private set; }
 
         private bool HasPassword(ApplicationUserManager manager)
         {
-            return manager.HasPassword(User.Identity.GetUserId());
+            return manager.HasPassword(this.User.Identity.GetUserId());
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var manager = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-            if (!IsPostBack)
+            if (!this.IsPostBack)
             {
                 // Determine the sections to render
-                if (HasPassword(manager))
+                if (this.HasPassword(manager))
                 {
-                    changePasswordHolder.Visible = true;
+                    this.changePasswordHolder.Visible = true;
                 }
                 else
                 {
-                    setPassword.Visible = true;
-                    changePasswordHolder.Visible = false;
+                    this.setPassword.Visible = true;
+                    this.changePasswordHolder.Visible = false;
                 }
 
                 // Render success message
-                var message = Request.QueryString["m"];
+                var message = this.Request.QueryString["m"];
                 if (message != null)
                 {
                     // Strip the query string from action
-                    Form.Action = ResolveUrl("~/Account/Manage");
+                    this.Form.Action = this.ResolveUrl("~/Account/Manage");
                 }
             }
         }
 
         protected void ChangePassword_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (this.IsValid)
             {
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
+                var manager = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var signInManager = this.Context.GetOwinContext().Get<ApplicationSignInManager>();
+                var result = manager.ChangePassword(
+                    this.User.Identity.GetUserId(),
+                    this.CurrentPassword.Text,
+                    this.NewPassword.Text);
                 if (result.Succeeded)
                 {
-                    var user = manager.FindById(User.Identity.GetUserId());
-                    signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                    Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
+                    var user = manager.FindById(this.User.Identity.GetUserId());
+                    signInManager.SignIn(user, false, false);
+                    this.Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
                 }
                 else
                 {
-                    AddErrors(result);
+                    this.AddErrors(result);
                 }
             }
         }
 
         protected void SetPassword_Click(object sender, EventArgs e)
         {
-            if (IsValid)
+            if (this.IsValid)
             {
                 // Create the local login info and link the local account to the user
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                IdentityResult result = manager.AddPassword(User.Identity.GetUserId(), password.Text);
+                var manager = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var result = manager.AddPassword(this.User.Identity.GetUserId(), this.password.Text);
                 if (result.Succeeded)
                 {
-                    Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
+                    this.Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
                 }
                 else
                 {
-                    AddErrors(result);
+                    this.AddErrors(result);
                 }
             }
         }
@@ -91,7 +88,7 @@ namespace BlogSystem.Web.Account
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                this.ModelState.AddModelError("", error);
             }
         }
     }

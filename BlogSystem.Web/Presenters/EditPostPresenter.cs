@@ -26,7 +26,7 @@
         public void Initialize(int id)
         {
             var post = this.Data.Posts.Find(id);
-            
+
             this.view.PostId = id;
             this.view.PostTitle = post.Title;
             this.view.AuthorId = post.AuthorId;

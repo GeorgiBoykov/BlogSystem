@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.UI;
 
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
@@ -9,25 +10,13 @@
 
     using Microsoft.AspNet.Identity;
 
-    public partial class Home : System.Web.UI.Page, IHomeView
+    public partial class Home : Page, IHomeView
     {
         private readonly HomePresenter presenter;
 
         protected Home()
         {
             this.presenter = new HomePresenter(this);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                this.presenter.Initialize(this.User.Identity.GetUserId());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-            }
         }
 
         public List<PostViewModel> PostsFeed
@@ -66,6 +55,18 @@
             {
                 this.famousTags.DataSource = value;
                 this.DataBind();
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.presenter.Initialize(this.User.Identity.GetUserId());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
     }

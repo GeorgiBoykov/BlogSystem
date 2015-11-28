@@ -42,34 +42,28 @@
             }
 
             this.view.PostTitle = post.Title;
-            this.view.Category = new CategoryViewModel {Id = post.CategoryId, Name = post.Category.Name};
+            this.view.Category = new CategoryViewModel { Id = post.CategoryId, Name = post.Category.Name };
             this.view.Author = new AuthorViewModel { Id = post.AuthorId, UserName = post.Author.UserName };
             this.view.Content = post.Content;
             this.view.DateCreated = post.DateCreated;
             this.view.Id = post.Id;
             this.view.Comments =
-                post.Comments
-                .OrderByDescending(c => c.DateCreated)
-                .Select(
-                    c =>
-                    new CommentViewModel
-                        {
-                            Id = c.Id,
-                            Author = c.Author,
-                            Content = c.Content,
-                            DateCreated = c.DateCreated
-                        }).ToList();
-            this.view.Tags = post.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name, Slug = t.Slug}).ToList();
+                post.Comments.OrderByDescending(c => c.DateCreated)
+                    .Select(
+                        c =>
+                        new CommentViewModel
+                            {
+                                Id = c.Id,
+                                Author = c.Author,
+                                Content = c.Content,
+                                DateCreated = c.DateCreated
+                            })
+                    .ToList();
+            this.view.Tags =
+                post.Tags.Select(t => new TagViewModel { Id = t.Id, Name = t.Name, Slug = t.Slug }).ToList();
             this.view.Likes =
                 post.Likes.Select(
-                    l =>
-                    new LikeViewModel
-                        {
-                            Id = l.Id,
-                            PostId = l.PostId,
-                            UserId = l.UserId,
-                            IpAddress = l.IpAddress
-                    })
+                    l => new LikeViewModel { Id = l.Id, PostId = l.PostId, UserId = l.UserId, IpAddress = l.IpAddress })
                     .ToList();
         }
 
@@ -86,23 +80,23 @@
             }
 
             var comment = new Comment
-            {
-                Author = author,
-                Content = content,
-                DateCreated = DateTime.Now,
-                PostId = this.view.Id
-            };
+                              {
+                                  Author = author,
+                                  Content = content,
+                                  DateCreated = DateTime.Now,
+                                  PostId = this.view.Id
+                              };
 
             this.Data.Comments.Add(comment);
             this.Data.SaveChanges();
 
             var commentView = new CommentViewModel
-            {
-                Id = comment.Id,
-                Content = comment.Content,
-                Author = comment.Author,
-                DateCreated = comment.DateCreated
-            };
+                                  {
+                                      Id = comment.Id,
+                                      Content = comment.Content,
+                                      Author = comment.Author,
+                                      DateCreated = comment.DateCreated
+                                  };
 
             this.view.Comments.Insert(0, commentView);
 
@@ -116,10 +110,12 @@
                 throw new ArgumentException("Authors cannot like their own posts");
             }
 
-            if (this.Data.Likes.All()
-                .Any(l => 
-                (l.PostId == this.view.Id && l.UserId == userId) ||
-                (l.PostId == this.view.Id && l.IpAddress == ipAddress) ))
+            if (
+                this.Data.Likes.All()
+                    .Any(
+                        l =>
+                        (l.PostId == this.view.Id && l.UserId == userId)
+                        || (l.PostId == this.view.Id && l.IpAddress == ipAddress)))
             {
                 throw new ArgumentException("Post already liked.");
             }

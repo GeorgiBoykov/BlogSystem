@@ -11,6 +11,7 @@
     public class BlogSystemData : IBlogSystemData
     {
         private readonly DbContext context;
+
         private readonly IDictionary<Type, object> repositories;
 
         public BlogSystemData()

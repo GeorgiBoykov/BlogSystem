@@ -4,7 +4,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Manage your external logins.</h2>
     <asp:PlaceHolder runat="server" ID="successMessage" Visible="false" ViewStateMode="Disabled">
-            <p class="text-success"><%: SuccessMessage %></p>
+            <p class="text-success"><%: this.SuccessMessage %></p>
         </asp:PlaceHolder>
     <div>
         <section id="externalLoginsForm">
@@ -28,7 +28,8 @@
                         <td>
                             <asp:Button runat="server" Text="Remove" CommandName="Delete" CausesValidation="false"
                                 ToolTip='<%# "Remove this " + Item.LoginProvider + " login from your account" %>'
-                                Visible="<%# CanRemoveExternalLogins %>" CssClass="btn btn-default" />
+                                Visible="<%#
+                this.CanRemoveExternalLogins %>" CssClass="btn btn-default" />
                         </td>
                     </tr>
                 </ItemTemplate>

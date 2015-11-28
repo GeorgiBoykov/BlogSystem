@@ -2,30 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Web.UI;
 
     using BlogSystem.Web.Models.ViewModels;
     using BlogSystem.Web.Presenters;
     using BlogSystem.Web.Views;
 
-    public partial class Search : System.Web.UI.Page, ISearchView
+    public partial class Search : Page, ISearchView
     {
         private readonly SearchPresenter presenter;
 
         protected Search()
         {
             this.presenter = new SearchPresenter(this);
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                this.presenter.Initialize(this.RouteData.Values["term"].ToString());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-            }
         }
 
         public List<PostViewModel> PostResults
@@ -51,6 +40,18 @@
             {
                 this.usersResults.DataSource = value;
                 this.DataBind();
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.presenter.Initialize(this.RouteData.Values["term"].ToString());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
     }

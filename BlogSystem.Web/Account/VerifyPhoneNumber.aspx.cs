@@ -1,50 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-
-namespace BlogSystem.Web.Account
+﻿namespace BlogSystem.Web.Account
 {
-    public partial class VerifyPhoneNumber : System.Web.UI.Page
+    using System;
+    using System.Web;
+    using System.Web.UI;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+
+    public partial class VerifyPhoneNumber : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var phonenumber = Request.QueryString["PhoneNumber"];
-            var code = manager.GenerateChangePhoneNumberToken(User.Identity.GetUserId(), phonenumber);           
-            PhoneNumber.Value = phonenumber;
+            var manager = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var phonenumber = this.Request.QueryString["PhoneNumber"];
+            var code = manager.GenerateChangePhoneNumberToken(this.User.Identity.GetUserId(), phonenumber);
+            this.PhoneNumber.Value = phonenumber;
         }
 
         protected void Code_Click(object sender, EventArgs e)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Invalid code");
+                this.ModelState.AddModelError("", "Invalid code");
                 return;
             }
 
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+            var manager = this.Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var signInManager = this.Context.GetOwinContext().Get<ApplicationSignInManager>();
 
-            var result = manager.ChangePhoneNumber(User.Identity.GetUserId(), PhoneNumber.Value, Code.Text);
+            var result = manager.ChangePhoneNumber(
+                this.User.Identity.GetUserId(),
+                this.PhoneNumber.Value,
+                this.Code.Text);
 
             if (result.Succeeded)
             {
-                var user = manager.FindById(User.Identity.GetUserId());
+                var user = manager.FindById(this.User.Identity.GetUserId());
 
                 if (user != null)
                 {
-                    signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                    Response.Redirect("/Account/Manage?m=AddPhoneNumberSuccess");
+                    signInManager.SignIn(user, false, false);
+                    this.Response.Redirect("/Account/Manage?m=AddPhoneNumberSuccess");
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
+            this.ModelState.AddModelError("", "Failed to verify phone");
         }
     }
 }

@@ -10,13 +10,13 @@
         IRepository<Category> Categories { get; }
 
         IRepository<Tag> Tags { get; }
-        
+
         IRepository<Post> Posts { get; }
-        
+
         IRepository<Comment> Comments { get; }
-          
-        IRepository<Like> Likes { get; }  
-        
+
+        IRepository<Like> Likes { get; }
+
         int SaveChanges();
     }
 }
