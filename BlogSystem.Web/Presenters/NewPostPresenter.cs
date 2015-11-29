@@ -35,6 +35,11 @@
 
         public void AddPost()
         {
+            if (this.view.AuthorId == null)
+            {
+                throw new ArgumentException("User have to be logged in to add new post");
+            }
+
             if (this.view.PostTitle.IsNullOrWhiteSpace())
             {
                 throw new ArgumentException("Title cannot be null or whitespace");

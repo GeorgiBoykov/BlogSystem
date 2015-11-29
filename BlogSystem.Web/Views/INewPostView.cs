@@ -4,11 +4,11 @@
 
     public interface INewPostView
     {
-        string PostTitle { get; }
+        string PostTitle { set; get; }
 
-        string Content { get; }
+        string Content { set; get; }
 
-        string Category { get; }
+        string Category { set; get; }
 
         List<string> CategoriesList { set; }
 

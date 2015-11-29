@@ -120,6 +120,10 @@
             this.CommentsRepoMock.Setup(c => c.All()).Returns(fakeComments.AsQueryable());
             this.PostsRepoMock.Setup(p => p.All()).Returns(fakePosts.AsQueryable());
 
+            this.PostsRepoMock.Setup(p => p.Add(It.IsAny<Post>())).Callback((Post post) => fakePosts.Add(post));
+            this.CommentsRepoMock.Setup(c => c.Add(It.IsAny<Comment>())).Callback((Comment comment) => fakeComments.Add(comment));
+            this.TagsRepoMock.Setup(t => t.Add(It.IsAny<Tag>())).Callback((Tag tag) => fakeTags.Add(tag));
+
             this.DataMock = new Mock<IBlogSystemData>();
             this.DataMock.Setup(d => d.Users).Returns(this.UsersRepoMock.Object);
             this.DataMock.Setup(d => d.Categories).Returns(this.CategoriesRepoMock.Object);

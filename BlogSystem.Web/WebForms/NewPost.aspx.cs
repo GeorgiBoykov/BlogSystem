@@ -44,6 +44,10 @@
             {
                 return this.Server.HtmlEncode(this.postTitle.Text);
             }
+            set
+            {
+                this.postTitle.Text = value;
+            }
         }
 
         public string Content
@@ -52,6 +56,11 @@
             {
                 return this.postContent.Text;
             }
+            set
+            {
+                this.postContent.Text = value;
+            }
+
         }
 
         public string Category
@@ -59,6 +68,10 @@
             get
             {
                 return this.postCategory.SelectedValue;
+            }
+            set
+            {
+                this.postCategory.SelectedValue = value;
             }
         }
 

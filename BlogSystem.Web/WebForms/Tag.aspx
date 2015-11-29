@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <ul class="pagination pagination-lg">
+            <ul class="pagination pagination-sm">
                 <li><a href="?page=1">&laquo;</a></li>
                 <% for (int i = this.CurrentPage - 2 > 0 ? this.CurrentPage - 2 : 1;
                           i <= (this.CurrentPage + 2 > this.PagesCount ? this.PagesCount : this.CurrentPage + 2);

@@ -23,6 +23,7 @@
         [MinLength(2)]
         public string Content { get; set; }
 
+        [Required]
         public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
