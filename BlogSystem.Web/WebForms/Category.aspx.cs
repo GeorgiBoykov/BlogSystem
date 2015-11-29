@@ -17,6 +17,20 @@
             this.presenter = new CategoryPresenter(this);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var routeValues = this.RouteData.Values;
+                int page = int.TryParse(this.Request.QueryString["page"], out page) ? page : 1;
+                this.presenter.Initialize(routeValues["name"].ToString(), page);
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
+        }
+
         public int Id { get; set; }
 
         public string Name
@@ -44,17 +58,8 @@
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var routeValues = this.RouteData.Values;
-                this.presenter.Initialize(routeValues["name"].ToString());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-            }
-        }
+        public int PagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
     }
 }

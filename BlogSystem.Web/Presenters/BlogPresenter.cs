@@ -12,6 +12,10 @@
     {
         private readonly IBlogView view;
 
+        private const int DefaultPostsPerPage = 5;
+        private const int DefaultPreviewsLenght = 300;
+        private const int DefaultFollowersCount = 5;
+
         public BlogPresenter(IBlogView view)
         {
             this.view = view;
@@ -23,7 +27,7 @@
             this.Data = data;
         }
 
-        public void Initialize(string username)
+        public void Initialize(string username, int page = 1)
         {
             var user = this.Data.Users.All().FirstOrDefault(u => u.UserName == username);
 
@@ -46,11 +50,13 @@
                                 Category =
                                     new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
                                 Content =
-                                    p.Content.Length > 300
-                                        ? WebExtensions.TruncateHtml(p.Content, 300)
+                                    p.Content.Length > DefaultPreviewsLenght
+                                        ? WebExtensions.TruncateHtml(p.Content, DefaultPreviewsLenght)
                                         : p.Content,
                                 DateCreated = p.DateCreated
                             })
+                    .Skip((page - 1) * DefaultPostsPerPage)
+                    .Take(DefaultPostsPerPage)
                     .ToList();
 
             this.view.Owner = new UserViewModel
@@ -60,16 +66,20 @@
                                       Followers =
                                           user.Followers.Select(
                                               u => new UserViewModel { Id = u.Id, Username = u.UserName })
-                                          .Take(5)
+                                          .Take(DefaultFollowersCount)
                                           .ToList(),
                                       Following =
                                           user.Following.Select(
                                               u => new UserViewModel { Id = u.Id, Username = u.UserName })
-                                          .Take(5)
+                                          .Take(DefaultFollowersCount)
                                           .ToList()
                                   };
 
             this.view.Posts = postsPreviews;
+
+            this.view.CurrentPage = page;
+
+            this.view.PagesCount = (int)Math.Ceiling((double)user.Posts.Count / DefaultPostsPerPage);
         }
 
         public void Follow(string loggedUserId)

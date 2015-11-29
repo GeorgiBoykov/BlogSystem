@@ -19,6 +19,18 @@
             this.presenter = new HomePresenter(this);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.presenter.Initialize(this.User.Identity.GetUserId());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
+        }
+
         public List<PostViewModel> PostsFeed
         {
             get
@@ -55,18 +67,6 @@
             {
                 this.famousTags.DataSource = value;
                 this.DataBind();
-            }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                this.presenter.Initialize(this.User.Identity.GetUserId());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
     }

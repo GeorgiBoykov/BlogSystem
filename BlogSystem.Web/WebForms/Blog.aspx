@@ -45,5 +45,27 @@
             </div>
 
         </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="pagination pagination-lg">
+                <li><a href="?page=1">&laquo;</a></li>
+                <% for (int i = this.CurrentPage - 2 > 0 ? this.CurrentPage - 2 : 1;
+                          i <= (this.CurrentPage + 2 > this.PagesCount ? this.PagesCount : this.CurrentPage + 2);
+                          i++)
+                    {
+                        if (this.CurrentPage == i)
+                        {
+                            this.Response.Write("<li class='active'><a href='?page="+i+"'>"+i+"</a></li>");
+                        }
+                        else
+                        {
+                            this.Response.Write("<li><a href='?page="+i+"'>"+i+"</a></li>");
+                        }
+                    } %>
+                <li><a href="?page=<% this.Response.Write(this.PagesCount); %>">&raquo;</a></li>
+            </ul>
+        </div>
     </div>
 </asp:Content>

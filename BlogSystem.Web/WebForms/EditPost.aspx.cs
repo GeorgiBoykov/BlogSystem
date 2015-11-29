@@ -17,6 +17,27 @@
             this.presenter = new EditPostPresenter(this);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!this.Request.IsAuthenticated)
+            {
+                this.Response.Redirect("/");
+            }
+
+            if (!this.IsPostBack)
+            {
+                try
+                {
+                    var routeValues = this.RouteData.Values;
+                    this.presenter.Initialize(int.Parse(routeValues["id"].ToString()));
+                }
+                catch (Exception ex)
+                {
+                    this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+                }
+            }
+        }
+
         public int PostId
         {
             get
@@ -76,27 +97,6 @@
             set
             {
                 this.postTags.Text = this.Server.HtmlDecode(value);
-            }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!this.Request.IsAuthenticated)
-            {
-                this.Response.Redirect("/");
-            }
-
-            if (!this.IsPostBack)
-            {
-                try
-                {
-                    var routeValues = this.RouteData.Values;
-                    this.presenter.Initialize(int.Parse(routeValues["id"].ToString()));
-                }
-                catch (Exception ex)
-                {
-                    this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-                }
             }
         }
 

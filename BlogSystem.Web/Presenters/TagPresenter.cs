@@ -12,6 +12,9 @@
     {
         private readonly ITagView view;
 
+        private const int DefaultPostsPerPage = 5;
+        private const int DefaultPreviewsLenght = 300;
+
         public TagPresenter(ITagView view)
         {
             this.view = view;
@@ -23,7 +26,7 @@
             this.view = view;
         }
 
-        public void Initialize(string slug)
+        public void Initialize(string slug, int page = 1)
         {
             var tag = this.Data.Tags.All().FirstOrDefault(t => t.Slug.ToLower() == slug.ToLower());
 
@@ -46,16 +49,21 @@
                                 Category =
                                     new CategoryViewModel { Id = p.CategoryId, Name = p.Category.Name },
                                 Content =
-                                    p.Content.Length > 300
-                                        ? WebExtensions.TruncateHtml(p.Content, 300)
+                                    p.Content.Length > DefaultPreviewsLenght
+                                        ? WebExtensions.TruncateHtml(p.Content, DefaultPreviewsLenght)
                                         : p.Content,
                                 DateCreated = p.DateCreated
                             })
+                    .Skip((page - 1) * DefaultPostsPerPage)
+                    .Take(DefaultPostsPerPage)
                     .ToList();
 
             this.view.Id = tag.Id;
             this.view.Name = tag.Name;
             this.view.Posts = posts;
+
+            this.view.CurrentPage = page;
+            this.view.PagesCount = (int)Math.Ceiling((double)tag.Posts.Count / DefaultPostsPerPage);
         }
     }
 }

@@ -29,6 +29,19 @@
             this.presenter = new PostPresenter(this);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var routeValues = this.RouteData.Values;
+                this.presenter.Initialize(routeValues["username"].ToString(), routeValues["slug"].ToString());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
+        }
+
         public int Id
         {
             get
@@ -143,19 +156,6 @@
                 {
                     this.likeBtn.Attributes.Add("disabled", "");
                 }
-            }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var routeValues = this.RouteData.Values;
-                this.presenter.Initialize(routeValues["username"].ToString(), routeValues["slug"].ToString());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
 

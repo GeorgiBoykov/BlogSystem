@@ -4,7 +4,7 @@
 
     using BlogSystem.Web.Views;
 
-    public class CategoryViewModel : ICategoryView
+    public class CategoryViewModel
     {
         public int Id { get; set; }
 

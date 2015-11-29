@@ -17,6 +17,18 @@
             this.presenter = new SearchPresenter(this);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                this.presenter.Initialize(this.RouteData.Values["term"].ToString());
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
+        }
+
         public List<PostViewModel> PostResults
         {
             get
@@ -40,18 +52,6 @@
             {
                 this.usersResults.DataSource = value;
                 this.DataBind();
-            }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                this.presenter.Initialize(this.RouteData.Values["term"].ToString());
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
             }
         }
     }

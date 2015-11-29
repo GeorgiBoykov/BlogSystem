@@ -23,6 +23,20 @@
             this.presenter = new BlogPresenter(this);
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                var username = this.RouteData.Values["username"].ToString();
+                int page = int.TryParse(this.Request.QueryString["page"], out page) ? page : 1;
+                this.presenter.Initialize(username, page);
+            }
+            catch (Exception ex)
+            {
+                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
+            }
+        }
+
         public UserViewModel Owner
         {
             get
@@ -61,18 +75,9 @@
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                var username = this.RouteData.Values["username"].ToString();
-                this.presenter.Initialize(username);
-            }
-            catch (Exception ex)
-            {
-                this.Response.RedirectToRoute("CustomErrorPage", new { ErrorMessage = ex.Message });
-            }
-        }
+        public int PagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
 
         protected void follow_OnClick(object sender, EventArgs e)
         {

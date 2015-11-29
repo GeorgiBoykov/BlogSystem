@@ -9,5 +9,9 @@
         UserViewModel Owner { get; set; }
 
         List<PostViewModel> Posts { get; set; }
+
+        int PagesCount { get; set; }
+
+        int CurrentPage { get; set; }
     }
 }

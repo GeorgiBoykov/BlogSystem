@@ -4,7 +4,7 @@
 
     using BlogSystem.Web.Views;
 
-    public class TagViewModel : ITagView
+    public class TagViewModel
     {
         public string Slug { get; set; }
 
