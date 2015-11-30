@@ -28,7 +28,7 @@
 
         public void Initialize(string categoryName, int page = 1)
         {
-            var category = this.Data.Categories.All().FirstOrDefault(c => c.Name == categoryName);
+            var category = this.Data.Categories.All().FirstOrDefault(c => c.Name.ToLower() == categoryName.ToLower());
 
             if (category == null)
             {
