@@ -34,7 +34,7 @@
 
                 <div class="form-group" id="bootstrapTagsInputForm">
                     <asp:Label runat="server" AssociatedControlID="postTags" CssClass="col-lg-2 control-label">Tags</asp:Label>
-                    <div class="col-xs-8">
+                    <div class="col-lg-10">
                         <asp:TextBox runat="server" ID="postTags" name="tags" CssClass="form-control" data-role="tagsinput" disabled=""></asp:TextBox>
                     </div>
                 </div>

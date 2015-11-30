@@ -8,7 +8,7 @@
                 <asp:Label runat="server" ID="postTitle"></asp:Label>
             </h2>
 
-            <div>
+            <div class="margin-bottom">
                 <asp:HyperLink runat="server" ID="categoryName" CssClass="label label-default mini"></asp:HyperLink>
                 <asp:HyperLink runat="server" ID="edit" CssClass="label label-success mini" Text="Edit Post"></asp:HyperLink>
             </div>
@@ -17,7 +17,7 @@
                 <asp:Literal runat="server" ID="content"></asp:Literal>
             </div>
 
-            <div class="attributes">
+            <div class="attributes margin-bottom">
                 <em> — Posted by: 
                     <asp:Label runat="server" ID="authorUsername"></asp:Label>
                      on 

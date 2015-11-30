@@ -26,9 +26,9 @@ a:hover {
     text-decoration: none;
 }
 
-.post-content {
+/*.post-content {
     white-space: pre-line;
-}
+}*/
 
 .mini {
     margin-top: 10px;
@@ -66,19 +66,15 @@ a:hover {
 img {
     float: none !important;
     display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+    max-width: 100% !important;
+    height: auto !important;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="tel"],
-input[type="select"] {
+.add-comment > input[type="text"]{
     max-width: 280px;
+}
+.add-comment > input[type="textarea"]{
+    max-width: 80%;
 }
 
 /* Responsive: Portrait tablets and up */
