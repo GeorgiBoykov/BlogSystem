@@ -14,6 +14,10 @@
                     <asp:Label runat="server" AssociatedControlID="postTitle" CssClass="col-lg-2 control-label">Title</asp:Label>
                     <div class="col-lg-10">
                         <asp:TextBox runat="server" Visible="False" ID="postId"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="postTitle"
+                            CssClass="text-danger" ErrorMessage="The title field is required." Display="Dynamic"/>
+                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "postTitle" ID="MinLenghtTitleVal"
+                            ValidationExpression = ".{2}.*" runat="server" ErrorMessage="Minimum 2 characters required." CssClass="text-danger"></asp:RegularExpressionValidator>
                         <asp:TextBox runat="server" CssClass="form-control margin-bottom" ID="postTitle"></asp:TextBox>
                     </div>
                 </div>
@@ -21,6 +25,10 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="postContent" CssClass="col-lg-2 control-label">Content</asp:Label>
                     <div class="col-lg-10">
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="postContent"
+                            CssClass="text-danger" ErrorMessage="The content field is required." Display="Dynamic"/>
+                    <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "postContent" ID="MinLenghtContentVal"
+                        ValidationExpression = ".{2}.*" runat="server" ErrorMessage="Minimum 2 characters required." CssClass="text-danger"></asp:RegularExpressionValidator>
                     <asp:TextBox runat="server" TextMode="MultiLine" CssClass="ckeditor margin-bottom" ID="postContent"></asp:TextBox>
                     </div>
                 </div>

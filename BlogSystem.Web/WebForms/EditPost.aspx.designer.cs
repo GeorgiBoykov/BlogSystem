@@ -22,6 +22,15 @@ namespace BlogSystem.Web.WebForms {
         protected global::System.Web.UI.WebControls.TextBox postId;
         
         /// <summary>
+        /// MinLenghtTitleVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MinLenghtTitleVal;
+        
+        /// <summary>
         /// postTitle control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace BlogSystem.Web.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox postTitle;
+        
+        /// <summary>
+        /// MinLenghtContentVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MinLenghtContentVal;
         
         /// <summary>
         /// postContent control.

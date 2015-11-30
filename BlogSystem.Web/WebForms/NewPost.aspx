@@ -12,8 +12,10 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="postTitle" CssClass="col-lg-2 control-label">Title</asp:Label>
                     <div class="col-lg-10">
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="postTitle" ValidationGroup="NewPostGroup"
-                        CssClass="text-danger" ErrorMessage="The title field is required." Display="Dynamic"/>
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="postTitle"
+                            CssClass="text-danger" ErrorMessage="The title field is required." Display="Dynamic"/>
+                        <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "postTitle" ID="MinLenghtTitleVal"
+                            ValidationExpression = ".{2}.*" runat="server" ErrorMessage="Minimum 2 characters required." CssClass="text-danger"></asp:RegularExpressionValidator>
                         <asp:TextBox runat="server" CssClass="form-control margin-bottom" ID="postTitle" placeholder="Title"></asp:TextBox>
                     </div>
                 </div>
@@ -21,8 +23,10 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="postContent" CssClass="col-lg-2 control-label">Content</asp:Label>
                     <div class="col-lg-10">
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="postContent" ValidationGroup="NewPostGroup"
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="postContent"
                         CssClass="text-danger" ErrorMessage="The content field is required." Display="Dynamic"/>
+                    <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "postContent" ID="MinLenghtContentVal"
+                            ValidationExpression = ".{2}.*" runat="server" ErrorMessage="Minimum 2 characters required." CssClass="text-danger"></asp:RegularExpressionValidator>
                     <asp:TextBox runat="server" TextMode="MultiLine" CssClass="ckeditor margin-bottom" ID="postContent"></asp:TextBox>
                     </div>
                 </div>
@@ -30,7 +34,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="postCategory" CssClass="col-lg-2 control-label">Category</asp:Label>
                     <div class="col-lg-10">
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="postCategory" ValidationGroup="NewPostGroup"
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="postCategory"
                         CssClass="text-danger" ErrorMessage="The category field is required." Display="Dynamic"/>
                     <asp:ListBox runat="server" ID="postCategory" CssClass="form-control margin-bottom" SelectionMode="Multiple"></asp:ListBox>
                     </div>

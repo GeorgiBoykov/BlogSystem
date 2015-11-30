@@ -103,6 +103,15 @@ namespace BlogSystem.Web.WebForms {
         protected global::System.Web.UI.UpdatePanel commentsPanel;
         
         /// <summary>
+        /// MinLenghtNameVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MinLenghtNameVal;
+        
+        /// <summary>
         /// addCommentAuthor control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace BlogSystem.Web.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox addCommentAuthor;
+        
+        /// <summary>
+        /// MinLenghtContentVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MinLenghtContentVal;
         
         /// <summary>
         /// addCommentContent control.

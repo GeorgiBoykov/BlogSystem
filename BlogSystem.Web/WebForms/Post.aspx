@@ -50,10 +50,14 @@
                             <asp:Label runat="server" AssociatedControlID="addCommentContent">Add comment: </asp:Label><br/>
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="addCommentAuthor"
                             CssClass="text-danger" ErrorMessage="The author field is required." Display="Dynamic" ValidationGroup="CommentsValGroup"/>
+                            <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "addCommentAuthor" ID="MinLenghtNameVal"  ValidationGroup="CommentsValGroup"
+                                 ValidationExpression = ".{2}.*" runat="server" ErrorMessage="Minimum 2 characters required." CssClass="text-danger"></asp:RegularExpressionValidator>
                             <asp:TextBox runat="server" ID="addCommentAuthor" placeholder="Your name" CssClass="form-control margin-bottom"></asp:TextBox>
                         
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="addCommentContent"
                             CssClass="text-danger" ErrorMessage="The content field is required." Display="Dynamic" ValidationGroup="CommentsValGroup"/>
+                            <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "addCommentContent" ID="MinLenghtContentVal"  ValidationGroup="CommentsValGroup"
+                                 ValidationExpression = ".{2}.*" runat="server" ErrorMessage="Minimum 2 characters required." CssClass="text-danger"></asp:RegularExpressionValidator>
                             <asp:TextBox runat="server" ID="addCommentContent" placeholder="Comment..." CssClass="form-control margin-bottom" TextMode="MultiLine">
                             </asp:TextBox>
                             <asp:Button runat="server" CssClass="btn-default" ID="addCommentBtn" OnClick="addCommentBtn_OnClick"  ValidationGroup="CommentsValGroup" Text="Submit"/>
