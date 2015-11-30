@@ -64,25 +64,25 @@
             Assert.IsNotNull(postCategory);
         }
 
-        [TestMethod]
-        public void CategoryPresenterInitiliazingShouldReturnTwoPosts()
-        {
-            // Arrange
-            List<PostViewModel> posts = new List<PostViewModel>();
-            var categoryViewMock = new Mock<ICategoryView>();
-            categoryViewMock.SetupSet(t => t.Posts = It.IsAny<List<PostViewModel>>())
-                .Callback<List<PostViewModel>>((list) => posts = list);
+        //[TestMethod]
+        //public void CategoryPresenterInitiliazingShouldReturnTwoPosts()
+        //{
+        //    // Arrange
+        //    List<PostViewModel> posts = new List<PostViewModel>();
+        //    var categoryViewMock = new Mock<ICategoryView>();
+        //    categoryViewMock.SetupSet(c => c.Posts = It.IsAny<List<PostViewModel>>())
+        //        .Callback<List<PostViewModel>>((list) => posts = list);
 
-            var fakeCategoryPresenter = new CategoryPresenter(
-                this.mocksContainer.DataMock.Object,
-                categoryViewMock.Object);
+        //    var fakeCategoryPresenter = new CategoryPresenter(
+        //        this.mocksContainer.DataMock.Object,
+        //        categoryViewMock.Object);
 
-            // Act
-            fakeCategoryPresenter.Initialize("TestCategory1");
+        //    // Act
+        //    fakeCategoryPresenter.Initialize("TestCategory1");
             
-            // Assert
-            Assert.AreEqual(2, posts.Count);
-        }
+        //    // Assert
+        //    Assert.AreEqual(2, posts.Count);
+        //}
 
         [TestMethod]
         public void TagPresenterInitiliazingShouldReturnTwoPosts()

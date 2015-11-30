@@ -5,7 +5,7 @@
   <script src='<%= this.ResolveClientUrl("~/Scripts/bootstrap-tagsinput.min.js") %>' type="text/javascript"></script>
   <script src='<%= this.ResolveClientUrl("~/Scripts/ckeditor/ckeditor.js") %>' type="text/javascript"></script>
     <div class="row">
-        <div class="col-lg-11">
+        <div class="col-lg-12">
             <div class="new-post-form">
               <fieldset>
                 <legend>Edit Post</legend>
