@@ -82,25 +82,25 @@
             Assert.AreEqual(2, posts.Count);
         }
 
-        [TestMethod]
-        public void CategoryPresenterInitiliazingShouldReturnTwoPosts()
-        {
-            // Arrange
-            List<PostViewModel> posts = new List<PostViewModel>();
-            var categoryViewMock = new Mock<ICategoryView>();
-            categoryViewMock.SetupSet(c => c.Posts = It.IsAny<List<PostViewModel>>())
-                .Callback<List<PostViewModel>>((list) => posts = list);
+        //[TestMethod]
+        //public void CategoryPresenterInitiliazingShouldReturnTwoPosts()
+        //{
+        //    // Arrange
+        //    List<PostViewModel> posts = new List<PostViewModel>();
+        //    var categoryViewMock = new Mock<ICategoryView>();
+        //    categoryViewMock.SetupSet(c => c.Posts = It.IsAny<List<PostViewModel>>())
+        //        .Callback<List<PostViewModel>>((list) => posts = list);
 
-            var fakeCategoryPresenter = new CategoryPresenter(
-                this.mocksContainer.DataMock.Object,
-                categoryViewMock.Object);
+        //    var fakeCategoryPresenter = new CategoryPresenter(
+        //        this.mocksContainer.DataMock.Object,
+        //        categoryViewMock.Object);
 
-            // Act
-            fakeCategoryPresenter.Initialize("TestCategory1");
+        //    // Act
+        //    fakeCategoryPresenter.Initialize("TestCategory1");
 
-            // Assert
-            Assert.AreEqual(2, posts.Count);
-        }
+        //    // Assert
+        //    Assert.AreEqual(2, posts.Count);
+        //}
 
         [TestMethod]
         public void AddingNewPostWithValidDataShouldAddItToTheRepo()
@@ -233,5 +233,70 @@
             Assert.AreEqual(1, comments.Count);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void LikingPostByTheAuthorShouldThrowExeption()
+        {
+            // Arrange
+            string loggedUserId = "aaa";
+            string ipAddress = "";
+            int postId = 1;
+            var postAuthor = new AuthorViewModel { Id = loggedUserId };
+
+            var postViewMock = new Mock<IPostView>();
+            postViewMock.Setup(v => v.Id).Returns(postId);
+            postViewMock.Setup(v => v.Author).Returns(postAuthor);
+
+            var fakePostPresenter = new PostPresenter(postViewMock.Object, this.mocksContainer.DataMock.Object);
+
+            // Act
+            fakePostPresenter.LikePost(loggedUserId, ipAddress);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void LikingAlredyLikedPostShouldThrowExeption()
+        {
+            // Arrange
+            string loggedUserId = "aaa";
+            string ipAddress = "";
+            int postId = 1;
+            var postAuthor = new AuthorViewModel { Id = "bbb" };
+
+            var postViewMock = new Mock<IPostView>();
+            postViewMock.Setup(v => v.Id).Returns(postId);
+            postViewMock.Setup(v => v.Author).Returns(postAuthor);
+
+            var fakePostPresenter = new PostPresenter(postViewMock.Object, this.mocksContainer.DataMock.Object);
+
+            // Act
+            fakePostPresenter.LikePost(loggedUserId, ipAddress);
+        }
+
+        [TestMethod]
+        public void LikingPostByShouldAddNewLikeInTheRepo()
+        {
+            // Arrange
+            string loggedUserId = "bbb";
+            string ipAddress = "fakeIp";
+            int postId = 1;
+            var postAuthor = new AuthorViewModel { Id = "aaa" };
+            var likes = new List<LikeViewModel>();
+
+            var postViewMock = new Mock<IPostView>();
+            postViewMock.Setup(v => v.Id).Returns(postId);
+            postViewMock.Setup(v => v.Author).Returns(postAuthor);
+            postViewMock.Setup(v => v.Likes).Returns(likes);
+            postViewMock.SetupSet(v => v.Likes = It.IsAny<List<LikeViewModel>>())
+                .Callback<List<LikeViewModel>>((list) => likes = list);
+
+            var fakePostPresenter = new PostPresenter(postViewMock.Object, this.mocksContainer.DataMock.Object);
+
+            // Act
+            fakePostPresenter.LikePost(loggedUserId, ipAddress);
+
+            // Assert
+            Assert.AreEqual(3, this.mocksContainer.LikesRepoMock.Object.All().Count());
+        }
     }
 }
