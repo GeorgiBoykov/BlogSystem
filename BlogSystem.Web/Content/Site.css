@@ -70,11 +70,19 @@ img {
     height: auto !important;
 }
 
-.add-comment > input[type="text"]{
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
     max-width: 280px;
 }
+
 .add-comment > input[type="textarea"]{
     max-width: 80%;
+}
+#MainContent_postTitle {
+    max-width: 100% !important;
 }
 
 /* Responsive: Portrait tablets and up */
