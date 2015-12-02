@@ -87,7 +87,7 @@
     <Compile Include="Repositories\GenericEfRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="UnitOfWork\IBlogSystemData.cs" />
-    <Compile Include="UnitOfWork\PhotoContestData.cs" />
+    <Compile Include="UnitOfWork\BlogSystemData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

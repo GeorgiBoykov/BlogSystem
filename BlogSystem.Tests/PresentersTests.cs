@@ -157,7 +157,7 @@
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void AddingNewPostWhitInvalidDataShouldThrowException()
+        public void AddingNewPostWithInvalidDataShouldThrowException()
         {
             // Arrange
             string title = "";
@@ -274,7 +274,7 @@
         }
 
         [TestMethod]
-        public void LikingPostByShouldAddNewLikeInTheRepo()
+        public void LikingPostShouldAddNewLikeInTheRepo()
         {
             // Arrange
             string loggedUserId = "bbb";
@@ -297,6 +297,65 @@
 
             // Assert
             Assert.AreEqual(3, this.mocksContainer.LikesRepoMock.Object.All().Count());
+        }
+
+        [TestMethod]
+        public void EditingExistingPostWhitValidDataShouldChangePostAttributes()
+        {
+            // Arrange
+            int postId = 1;
+            string title = "testMoq";
+            string content = "testMoq";
+            string loggedUserId = "aaa";
+
+            var editPostViewMock = new Mock<IEditPostView>();
+            editPostViewMock.Setup(v => v.AuthorId).Returns(loggedUserId);
+
+            var fakeEditPostPresenter = new EditPostPresenter(editPostViewMock.Object, this.mocksContainer.DataMock.Object);
+
+            // Act
+            fakeEditPostPresenter.EditPost(postId,loggedUserId, title, content);
+
+            // Assert
+            Assert.AreEqual(title, this.mocksContainer.PostsRepoMock.Object.Find(postId).Title);
+        }
+    
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void EditingExistingPostWhitInvalidDataShouldThrowException()
+        {
+            // Arrange
+            int postId = 1;
+            string title = "";
+            string content = "";
+            string loggedUserId = "aaa";
+
+            var editPostViewMock = new Mock<IEditPostView>();
+            editPostViewMock.Setup(v => v.AuthorId).Returns(loggedUserId);
+
+            var fakeEditPostPresenter = new EditPostPresenter(editPostViewMock.Object, this.mocksContainer.DataMock.Object);
+
+            // Act
+            fakeEditPostPresenter.EditPost(postId,loggedUserId, title, content);
+        }
+    
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void EditingExistingPostByOtherThanTheAuthorShouldThrowException()
+        {
+            // Arrange
+            int postId = 1;
+            string title = "test";
+            string content = "test";
+            string loggedUserId = "bbb";
+
+            var editPostViewMock = new Mock<IEditPostView>();
+            editPostViewMock.Setup(v => v.AuthorId).Returns(loggedUserId);
+
+            var fakeEditPostPresenter = new EditPostPresenter(editPostViewMock.Object, this.mocksContainer.DataMock.Object);
+
+            // Act
+            fakeEditPostPresenter.EditPost(postId,loggedUserId, title, content);
         }
     }
 }

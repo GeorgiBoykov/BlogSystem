@@ -2,16 +2,16 @@
 {
     public interface IEditPostView
     {
-        int PostId { set; }
+        int PostId { get; set; }
 
-        string PostTitle { set; }
+        string PostTitle { get; set; }
 
-        string Content { set; }
+        string Content { get; set; }
 
-        string Category { set; }
+        string Category { get; set; }
 
-        string AuthorId { set; }
+        string AuthorId { get; set; }
 
-        string Tags { set; }
+        string Tags { get; set; }
     }
 }

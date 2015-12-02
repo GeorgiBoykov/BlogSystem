@@ -39,7 +39,7 @@
         {
             var post = this.Data.Posts.Find(id);
 
-            if (post.AuthorId != userId)
+            if (post.Author.Id != userId)
             {
                 throw new ArgumentException("Only authors can edit their posts.");
             }
