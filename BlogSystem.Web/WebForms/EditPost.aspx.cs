@@ -29,7 +29,7 @@
                 try
                 {
                     var routeValues = this.RouteData.Values;
-                    this.presenter.Initialize(int.Parse(routeValues["id"].ToString()));
+                    this.presenter.Initialize(routeValues["slug"].ToString());
                 }
                 catch (Exception ex)
                 {
@@ -110,7 +110,9 @@
                     this.Server.HtmlEncode(this.postTitle.Text),
                     this.postContent.Text);
 
-                this.Response.RedirectToRoute("User", new { username = this.User.Identity.Name });
+                this.Response.RedirectToRoute(
+                    "Post",
+                    new { username = this.User.Identity.Name, slug = this.RouteData.Values["slug"].ToString() });
             }
             catch (ArgumentException ex)
             {

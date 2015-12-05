@@ -23,11 +23,16 @@
             this.Data = data;
         }
 
-        public void Initialize(int id)
+        public void Initialize(string slug)
         {
-            var post = this.Data.Posts.Find(id);
+            var post = this.Data.Posts.All().FirstOrDefault(p => p.Slug == slug);
 
-            this.view.PostId = id;
+            if (post == null)
+            {
+                throw new ArgumentException(string.Format("Not existing post: {0}", slug));
+            }
+
+            this.view.PostId = post.Id;
             this.view.PostTitle = post.Title;
             this.view.AuthorId = post.AuthorId;
             this.view.Category = post.Category.Name;

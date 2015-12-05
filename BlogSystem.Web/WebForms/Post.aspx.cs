@@ -51,7 +51,6 @@
             set
             {
                 this.id = value;
-                this.edit.NavigateUrl = string.Format("../edit/{0}", value);
                 if (this.User.Identity.GetUserId() != this.Author.Id)
                 {
                     this.edit.Visible = false;
@@ -80,7 +79,17 @@
             }
         }
 
-        public string Slug { get; set; }
+        public string Slug
+        {
+            get
+            {
+                return this.edit.NavigateUrl;
+            }
+            set
+            {
+                this.edit.NavigateUrl = string.Format("../edit/{0}", value);
+            }
+        }
 
         public CategoryViewModel Category
         {

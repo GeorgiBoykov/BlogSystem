@@ -47,6 +47,7 @@
             }
 
             this.view.PostTitle = post.Title;
+            this.view.Slug = post.Slug;
             this.view.Category = new CategoryViewModel { Id = post.CategoryId, Name = post.Category.Name };
             this.view.Author = new AuthorViewModel { Id = post.AuthorId, UserName = post.Author.UserName };
             this.view.Content = post.Content;

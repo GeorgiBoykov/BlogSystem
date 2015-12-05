@@ -28,7 +28,7 @@ namespace BlogSystem.Web
 
             routes.MapPageRoute("Tag", "tags/show/{name}", "~/WebForms/Tag.aspx");
 
-            routes.MapPageRoute("Edit", "edit/{id}", "~/WebForms/EditPost.aspx");
+            routes.MapPageRoute("Edit", "edit/{slug}", "~/WebForms/EditPost.aspx");
 
             routes.MapPageRoute("Category", "categories/show/{name}", "~/WebForms/Category.aspx");
 
