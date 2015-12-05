@@ -41,6 +41,11 @@
                 throw new ArgumentException(string.Format("Post with title {0} not found", slug));
             }
 
+            if (post.IsDeleted)
+            {
+                throw new ArgumentException(string.Format("Post with title {0} was deleted", slug));
+            }
+
             this.view.PostTitle = post.Title;
             this.view.Category = new CategoryViewModel { Id = post.CategoryId, Name = post.Category.Name };
             this.view.Author = new AuthorViewModel { Id = post.AuthorId, UserName = post.Author.UserName };
@@ -134,6 +139,25 @@
                                };
 
             this.view.Likes.Add(likeView);
+            this.Data.SaveChanges();
+        }
+
+        public void DeletePost(string userId)
+        {
+            var post = this.Data.Posts.Find(this.view.Id);
+
+            if (post == null)
+            {
+                throw new ArgumentException(string.Format("Not existing post: # {0}", post.Id));
+            }
+
+            if (this.view.Author.Id != userId)
+            {
+                throw new ArgumentException("Only Authors can delete their posts.");
+            }
+
+            post.IsDeleted = true;
+
             this.Data.SaveChanges();
         }
     }

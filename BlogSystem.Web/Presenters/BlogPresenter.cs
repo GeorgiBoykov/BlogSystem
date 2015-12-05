@@ -37,7 +37,8 @@
             }
 
             var postsPreviews =
-                user.Posts.OrderByDescending(p => p.DateCreated)
+                user.Posts.Where(p => p.IsDeleted == false)
+                    .OrderByDescending(p => p.DateCreated)
                     .Select(
                         p =>
                         new PostViewModel
@@ -79,7 +80,7 @@
 
             this.view.CurrentPage = page;
 
-            this.view.PagesCount = (int)Math.Ceiling((double)user.Posts.Count / DefaultPostsPerPage);
+            this.view.PagesCount = (int)Math.Ceiling((double)user.Posts.Count(p => !p.IsDeleted) / DefaultPostsPerPage);
         }
 
         public void Follow(string loggedUserId)

@@ -82,25 +82,25 @@
             Assert.AreEqual(2, posts.Count);
         }
 
-        //[TestMethod]
-        //public void CategoryPresenterInitiliazingShouldReturnTwoPosts()
-        //{
-        //    // Arrange
-        //    List<PostViewModel> posts = new List<PostViewModel>();
-        //    var categoryViewMock = new Mock<ICategoryView>();
-        //    categoryViewMock.SetupSet(c => c.Posts = It.IsAny<List<PostViewModel>>())
-        //        .Callback<List<PostViewModel>>((list) => posts = list);
+        [TestMethod]
+        public void CategoryPresenterInitiliazingShouldReturnTwoPosts()
+        {
+            // Arrange
+            List<PostViewModel> posts = new List<PostViewModel>();
+            var categoryViewMock = new Mock<ICategoryView>();
+            categoryViewMock.SetupSet(c => c.Posts = It.IsAny<List<PostViewModel>>())
+                .Callback<List<PostViewModel>>((list) => posts = list);
 
-        //    var fakeCategoryPresenter = new CategoryPresenter(
-        //        this.mocksContainer.DataMock.Object,
-        //        categoryViewMock.Object);
+            var fakeCategoryPresenter = new CategoryPresenter(
+                this.mocksContainer.DataMock.Object,
+                categoryViewMock.Object);
 
-        //    // Act
-        //    fakeCategoryPresenter.Initialize("TestCategory1");
+            // Act
+            fakeCategoryPresenter.Initialize("TestCategory1");
 
-        //    // Assert
-        //    Assert.AreEqual(2, posts.Count);
-        //}
+            // Assert
+            Assert.AreEqual(2, posts.Count);
+        }
 
         [TestMethod]
         public void AddingNewPostWithValidDataShouldAddItToTheRepo()
@@ -150,9 +150,6 @@
 
             // Act
             fakeNewPostPresenter.AddPost();
-
-            // Assert
-            Assert.AreEqual(3, this.mocksContainer.PostsRepoMock.Object.All().Count());
         }
 
         [TestMethod]
@@ -177,9 +174,6 @@
 
             // Act
             fakeNewPostPresenter.AddPost();
-
-            // Assert
-            Assert.AreEqual(3, this.mocksContainer.PostsRepoMock.Object.All().Count());
         }
 
         [TestMethod]
@@ -227,10 +221,6 @@
 
             // Act
             fakePostPresenter.AddComment(author, content);
-
-            // Assert
-            Assert.AreEqual(3, this.mocksContainer.CommentsRepoMock.Object.All().Count());
-            Assert.AreEqual(1, comments.Count);
         }
 
         [TestMethod]
@@ -300,7 +290,7 @@
         }
 
         [TestMethod]
-        public void EditingExistingPostWhitValidDataShouldChangePostAttributes()
+        public void EditingExistingPostWithValidDataShouldChangePostAttributes()
         {
             // Arrange
             int postId = 1;
@@ -322,7 +312,7 @@
     
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void EditingExistingPostWhitInvalidDataShouldThrowException()
+        public void EditingExistingPostWithInvalidDataShouldThrowException()
         {
             // Arrange
             int postId = 1;

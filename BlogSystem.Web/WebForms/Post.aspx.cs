@@ -55,6 +55,7 @@
                 if (this.User.Identity.GetUserId() != this.Author.Id)
                 {
                     this.edit.Visible = false;
+                    this.delete.Visible = false;
                 }
             }
         }
@@ -191,6 +192,24 @@
                 this.likeBtn.Text = string.Format("Like: {0}", this.Likes.Count);
                 this.likeBtn.Attributes.Add("disabled", "");
                 this.likesPanel.Update();
+            }
+            catch (ArgumentException ex)
+            {
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    this.GetType(),
+                    "myKey",
+                    string.Format("notificationModule.showErrorMessage('{0}')", ex.Message),
+                    true);
+            }
+        }
+
+        protected void delete_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                this.presenter.DeletePost(this.User.Identity.GetUserId());
+                this.Response.RedirectToRoute("User", new { username = this.User.Identity.Name });
             }
             catch (ArgumentException ex)
             {

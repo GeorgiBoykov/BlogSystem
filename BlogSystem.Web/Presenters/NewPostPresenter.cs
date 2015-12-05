@@ -35,6 +35,8 @@
 
         public void AddPost()
         {
+            Random rnd = new Random();
+
             if (this.view.AuthorId == null)
             {
                 throw new ArgumentException("User have to be logged in to add new post");
@@ -83,7 +85,7 @@
                                Title = this.view.PostTitle,
                                Slug =
                                    this.CreateSlug(
-                                       string.Format("{0}-{1}", this.view.PostTitle, DateTime.Now.Millisecond)),
+                                       string.Format("{0}-{1}", this.view.PostTitle, rnd.Next(10000,100000))),
                                Content = this.view.Content,
                                CategoryId = category.Id,
                                AuthorId = this.view.AuthorId,

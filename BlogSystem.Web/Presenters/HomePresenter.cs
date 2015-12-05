@@ -35,7 +35,7 @@
 
             var postsFeed =
                 this.Data.Posts.All()
-                    .Where(p => following.Contains(p.AuthorId))
+                    .Where(p => following.Contains(p.AuthorId) && p.IsDeleted == false)
                     .OrderByDescending(p => p.DateCreated)
                     .Select(
                         p =>
@@ -51,6 +51,7 @@
 
             var latestComments =
                 this.Data.Comments.All()
+                    .Where(c => c.Post.IsDeleted == false)
                     .Where(c => following.Contains(c.Post.AuthorId) || c.Post.AuthorId == loggedUserId)
                     .OrderByDescending(c => c.DateCreated)
                     .Select(
@@ -81,7 +82,7 @@
 
             var famousTags =
                 this.Data.Tags.All()
-                    .OrderByDescending(t => t.Posts.Count)
+                    .OrderByDescending(t => t.Posts.Count(p => !p.IsDeleted))
                     .Select(t => new TagViewModel { Name = t.Name, Slug = t.Slug })
                     .Take(15)
                     .ToList();

@@ -37,6 +37,7 @@
 
             var posts =
                 category.Posts.OrderByDescending(p => p.DateCreated)
+                    .Where(p => p.IsDeleted == false)
                     .Select(
                         p =>
                         new PostViewModel
@@ -63,7 +64,7 @@
             this.view.Posts = posts;
 
             this.view.CurrentPage = page;
-            this.view.PagesCount = (int)Math.Ceiling((double)category.Posts.Count / DefaultPostsPerPage);
+            this.view.PagesCount = (int)Math.Ceiling((double)category.Posts.Count(p => !p.IsDeleted) / DefaultPostsPerPage);
         }
     }
 }

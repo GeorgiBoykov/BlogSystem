@@ -36,6 +36,8 @@
 
         public DateTime DateCreated { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public virtual Category Category { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }

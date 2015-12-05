@@ -7,7 +7,7 @@
         <h4>Posts: </h4>
         <asp:Repeater runat="server" ID="postsResults">
             <ItemTemplate>
-                <a href="<%# string.Format("/{0}/{1}", this.Eval("Author.UserName"), this.Eval("Slug")) %>" class="btn btn-info">
+                <a href="<%# string.Format("/{0}/{1}", this.Eval("Author.UserName"), this.Eval("Slug")) %>" class="btn btn-info margin-bottom">
                     <i class="glyphicon glyphicon-edit"></i>
                     <%# this.Eval("PostTitle") %>
                 </a>
@@ -19,7 +19,7 @@
         <h4>Users: </h4>
         <asp:Repeater runat="server" ID="usersResults">
             <ItemTemplate>
-                <a href="/<%# this.Eval("Username") %>" class="btn btn-info">
+                <a href="/<%# this.Eval("Username") %>" class="btn btn-info margin-bottom">
                     <i class="glyphicon glyphicon-user"></i>
                     <%# this.Eval("Username") %>
                 </a>

@@ -31,7 +31,6 @@ a:hover {
 }*/
 
 .mini {
-    margin-top: 10px;
     font-size: 13px;
 }
 
@@ -61,7 +60,10 @@ a:hover {
     line-height: 2 !important;
 }
 .margin-bottom {
-    margin-bottom: 7px;
+    margin-bottom: 11px;
+}
+.margin-top {
+    margin-top: 7px;
 }
 img {
     float: none !important;

@@ -11,6 +11,7 @@
             <div class="margin-bottom">
                 <asp:HyperLink runat="server" ID="categoryName" CssClass="label label-default mini"></asp:HyperLink>
                 <asp:HyperLink runat="server" ID="edit" CssClass="label label-success mini" Text="Edit Post"></asp:HyperLink>
+                <asp:Button runat="server" ID="delete" CssClass="btn btn-danger btn-xs mini" Text="Delete" OnClick="delete_OnClick" OnClientClick="return confirm('Are you sure you want to delete this post?')"></asp:Button>
             </div>
 
             <div class="post-content margin-bottom">
@@ -38,7 +39,7 @@
             <div class="likes">
                 <asp:UpdatePanel runat="server" ID="likesPanel" ChildrenAsTriggers="False" UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:Button runat="server"  CssClass="btn btn-primary btn-xs mini" ID="likeBtn" OnClick="likeBtn_OnClick"/>
+                        <asp:Button runat="server"  CssClass="btn btn-primary btn-xs mini margin-top" ID="likeBtn" OnClick="likeBtn_OnClick"/>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

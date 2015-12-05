@@ -25,7 +25,7 @@
         {
             var postResults =
                 this.Data.Posts.All()
-                    .Where(p => p.Title.Contains(searchTerm))
+                    .Where(p => p.Title.Contains(searchTerm) && p.IsDeleted == false)
                     .Select(
                         p =>
                         new PostViewModel

@@ -39,6 +39,11 @@
         {
             var post = this.Data.Posts.Find(id);
 
+            if (post.IsDeleted)
+            {
+                throw new ArgumentException(string.Format("Post with title {0} was deleted", post.Title));
+            }
+
             if (post.Author.Id != userId)
             {
                 throw new ArgumentException("Only authors can edit their posts.");
